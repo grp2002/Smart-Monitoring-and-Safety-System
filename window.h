@@ -10,27 +10,13 @@
 
 #include <mutex>
 
-#include "CppTimer.h"
+#include "fakesensor.h"
 
 // class definition 'Window'
-class Window : public QWidget
+class Window : public QWidget, FakeSensor
 {
     // must include the Q_OBJECT macro for for the Qt signals/slots framework to work with this class
     Q_OBJECT
-
-
-    class FakeSensor : public CppTimer {
-	static constexpr double gain = 7.5;
-    public:
-	Window* window = nullptr;
-	int count = 0;
-	void timerEvent() {
-	    double inVal = gain * sin( M_PI * count / 50.0 );
-	    window->hasData(inVal);
-	    ++count;
-	}
-    };
-
     
 public:
     Window(); // default constructor - called when a Window is declared without arguments
@@ -53,8 +39,6 @@ private:
     QVBoxLayout  *vLayout;  // vertical layout
     QHBoxLayout  *hLayout;  // horizontal layout
 
-    FakeSensor fakeSensor;
-
     // data arrays for the plot
     double xData[plotDataSize];
     double yData[plotDataSize];
@@ -62,7 +46,7 @@ private:
     long count = 0;
 
     void reset();
-    void hasData(double v);
+    virtual void hasData(double v);
 
     std::mutex mtx; 
 };

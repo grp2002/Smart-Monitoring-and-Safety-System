@@ -4,9 +4,7 @@
 
 
 Window::Window()
-{
-    fakeSensor.window = this;
-    
+{    
     // set up the thermometer
     thermo = new QwtThermo; 
     thermo->setFillBrush( QBrush(Qt::red) );
@@ -48,13 +46,13 @@ Window::Window()
     setLayout(hLayout);
 
     // a fake data sample every 10ms
-    fakeSensor.startms(10);
+    FakeSensor::startms(10);
     // Screen refresh every 40ms
     startTimer(40);
 }
 
 Window::~Window() {
-    fakeSensor.stop();
+    FakeSensor::stop();
 }
 
 void Window::reset() {
