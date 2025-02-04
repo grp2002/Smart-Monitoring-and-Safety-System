@@ -35,7 +35,10 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 - **Web Interface (GitHub Pages)**: Displays project details and status updates
 - **Client Applications (LAN-Based)**: Receives alerts and displays monitoring data
 
----
+### **Design Scematic**
+![Design Scematic](./System2_page-0002.jpg)
+
+
 
 ## 🚀 How It Works
 1. **Sensors collect temperature data every 5 minutes** via GPIO.
