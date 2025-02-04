@@ -36,7 +36,7 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 - **Client Applications (LAN-Based)**: Receives alerts and displays monitoring data
 
 ### **Design Scematic**
-![Design Scematic](./System2_page-0002.jpg)
+![Design Scematic](./System_Schematic.jpg)
 
 
 
