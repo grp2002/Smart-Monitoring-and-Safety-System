@@ -1,6 +1,6 @@
 # Smart-Monitoring-and-Safety-System
 University of Glasgow ENG5220: Real Time Embedded Programming (2024-25) Group Project
-# 🔥 Smart Monitoring and Safety System 🔥
+# Project Overview  
 
 A real-time monitoring solution for **critical and non-critical environments** using **Raspberry Pi 5**.  
 This system ensures **safety, surveillance, and real-time alerts** by monitoring temperature levels and triggering alerts when predefined thresholds are exceeded.
