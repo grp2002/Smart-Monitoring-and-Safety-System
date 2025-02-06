@@ -46,7 +46,7 @@ private:
     long count = 0;
 
     void reset();
-    virtual void hasData(double v);
+    virtual void fakeSensorHasData(double v);
 
     std::mutex mtx; 
 };

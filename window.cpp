@@ -66,7 +66,7 @@ void Window::reset() {
 
 
 // add the new input to the plot
-void Window::hasData(double inVal) {
+void Window::fakeSensorHasData(double inVal) {
     mtx.lock();
     std::move( yData, yData + plotDataSize - 1, yData+1 );
     yData[0] = inVal;
