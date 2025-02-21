@@ -104,6 +104,14 @@ void GPIOPin::worker() {
 		 */
 	    gpiod_line_event_read(pinGPIO, &event);
 
+		/**
+		 * @brief Read current value of a single GPIO line.
+		 * @param line GPIO line object.
+		 * @return 0 or 1 if the operation succeeds. On error this routine returns -1
+		 *         and sets the last error number.
+		 */
+		gpiod_line_get_value(pinGPIO);
+		
 		//call the event handler
 	    gpioEvent(event);
 	} else if (r < 0) {

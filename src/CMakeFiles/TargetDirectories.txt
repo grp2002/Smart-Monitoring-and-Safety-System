@@ -1,0 +1,3 @@
+/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles/smart_system.dir
+/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles/edit_cache.dir
+/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles/rebuild_cache.dir

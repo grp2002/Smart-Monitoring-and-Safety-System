@@ -73,6 +73,8 @@ private:
     gpiod_chip *chipGPIO = nullptr; //GPIO chip handle
     gpiod_line *pinGPIO = nullptr; //handle to the GPIO line(pin)
     
+    pollfd pfd; 
+
     // thread reference for concurrent execution
     std::thread thr; 
     
