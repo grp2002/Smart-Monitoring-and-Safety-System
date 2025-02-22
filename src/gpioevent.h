@@ -5,10 +5,7 @@
  * Special thanks to Bernd Porr <mail@berndporr.me.uk> for contributing
  * and sharing his work as free software in public domain. This software
  * is re-using parts of his work.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation. See the file LICENSE.
+ * 
  */
 
 #include <stdint.h>
@@ -69,11 +66,11 @@ public:
 
 private:
 
-    // gpiod stuff
+    // gpiod  related stuff
     gpiod_chip *chipGPIO = nullptr; //GPIO chip handle
     gpiod_line *pinGPIO = nullptr; //handle to the GPIO line(pin)
     
-    pollfd pfd; 
+    //pollfd pfd; 
 
     // thread reference for concurrent execution
     std::thread thr; 
