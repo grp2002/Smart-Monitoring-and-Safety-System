@@ -50,3 +50,8 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
    - **Start live video surveillance (if enabled)**
 4. **Users can remotely monitor sensor readings and alerts via LAN-connected apps.**
 5. The system operates autonomously with **minimal latency** using a **multi-threaded architecture**.
+
+
+## 🚀 Project Management  
+Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
+
