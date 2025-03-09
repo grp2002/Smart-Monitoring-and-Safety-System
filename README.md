@@ -36,7 +36,7 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 - **Client Applications (LAN-Based)**: Receives alerts and displays monitoring data
 
 ### **Design Scematic**
-![Design Scematic](./System_Schematic.jpg)
+![Design Scematic](./docs/images/Smart%20Monitoring%20And%20Safety%20System%20schematic%20v1.0.png)
 
 
 
