@@ -22,19 +22,19 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 
 int main(int argc, char *argv[]) {
 	fprintf(stderr,"Press any key to stop.\n");
-	TMP117TemperatureSensor t1, t2;
+	TMP117TemperatureSensor temp_Sensor1, temp_Sensor2;
 	GPIOPin gpiopin17, gpiopin27;
 
-	gpiopin17.registerCallback(&t1);
+	gpiopin17.registerCallback(&temp_Sensor1);
 	const int gpioPinNo17 = 17;
-	gpiopin27.start(gpioPinNo17);
+	gpiopin17.start(gpioPinNo17);
 
-	gpiopin27.registerCallback(&t2);
+	gpiopin27.registerCallback(&temp_Sensor2);
 	const int gpioPinNo27 = 27;
 	gpiopin27.start(gpioPinNo27);
 
 	getchar();
-    gpiopin17.stop();
+        gpiopin17.stop();
 	gpiopin27.stop();
 	return 0;
 }
