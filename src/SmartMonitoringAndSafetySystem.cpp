@@ -5,7 +5,7 @@
 
 #include "gpioevent.h"
 
-class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
+class EventHandlerTMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	virtual void hasEvent(gpiod_line_event& e) override {
 	    switch (e.event_type) {
 	    case GPIOD_LINE_EVENT_RISING_EDGE:
@@ -22,7 +22,7 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 
 int main(int argc, char *argv[]) {
 	fprintf(stderr,"Press any key to stop.\n");
-	TMP117TemperatureSensor temp_Sensor1, temp_Sensor2;
+	EventHandlerTMP117TemperatureSensor temp_Sensor1, temp_Sensor2;
 	GPIOPin gpiopin17, gpiopin27;
 
 	gpiopin17.registerCallback(&temp_Sensor1);
