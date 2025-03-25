@@ -31,7 +31,7 @@ Window::Window()
 
     button = new QPushButton("Reset");
     // see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
-    connect(button,&QPushButton::clicked,this,&Window::reset);
+    connect(button,&QPushButton::clicked,[this](){reset();});
 
     // set up the layout - button above thermometer
     vLayout = new QVBoxLayout();

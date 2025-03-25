@@ -9,7 +9,7 @@ A simple example program using QT and Qwt widgets.
 Install the QT5 and Qwt development packages:
 
 ```
-    apt-get install qtdeclarative5-dev-tools
+    apt-get install qtdeclarative5-dev-tools qt5-qmake qt5-qmake-bin qtbase5-dev qtbase5-dev-tools
     apt-get install libqwt-qt5-dev
 ```
 
