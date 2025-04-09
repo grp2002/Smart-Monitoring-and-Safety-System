@@ -64,6 +64,8 @@ public:
      **/
     void stop();
 
+    gpiod_line* getLine();
+
 private:
 
     // gpiod  related stuff

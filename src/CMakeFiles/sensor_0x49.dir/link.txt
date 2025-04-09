@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/sensor_0x49.dir/gpioevent.cpp.o CMakeFiles/sensor_0x49.dir/TMP117Sensor0x49.cpp.o -o sensor_0x49  -lgpiod 

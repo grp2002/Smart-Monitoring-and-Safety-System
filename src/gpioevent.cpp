@@ -10,7 +10,7 @@ void GPIOPin::start(int pinNo,
 		    int chipNo) {
 	
 #ifdef DEBUG
-    fprintf(stderr,"Init.\n");
+    fprintf(stderr,"GPIO pin %d on chip %d is being init.\n",pinNo,chipNo);
 #endif
 
 	/**
@@ -49,6 +49,7 @@ void GPIOPin::start(int pinNo,
 	 * @return 0 if the operation succeeds, -1 on failure.
 	 */
     int ret = gpiod_line_request_both_edges_events(pinGPIO, "Consumer");
+	//int ret = gpiod_line_request_falling_edge_events(pinGPIO, "Consumer");
     if (ret < 0) {
 #ifdef DEBUG
 	fprintf(stderr,"Request event notification failed on pin %d and chip %d.\n",
@@ -57,6 +58,23 @@ void GPIOPin::start(int pinNo,
 	throw "Could not request event for IRQ.";
     }
 
+/*
+	// NEW: Immediately check pin level
+	int value = gpiod_line_get_value(pinGPIO);
+	if (value == 0) {
+		fprintf(stderr, "ALERT already active on startup — triggering manual event.\n");
+
+		struct timespec ts;
+		ts.tv_sec = 0;
+		ts.tv_nsec = 0;
+
+		gpiod_line_event fake_event;
+		fake_event.event_type = GPIOD_LINE_EVENT_FALLING_EDGE;
+		fake_event.ts = ts;
+
+		gpioEvent(fake_event);
+	}
+*/
     running = true;
 	/*
 	* Concurrently execute non-static member function GPIOPin::worker()
@@ -72,12 +90,30 @@ void GPIOPin::gpioEvent(gpiod_line_event& event) {
 	* Deduces the element type automatically
 	*/
 	for(auto &cb: callbackInterfaces) {
+		printf("GPIO event received...\n");
 	    cb->hasEvent(event);
+		//DEBUG
+		usleep(1000);
+		int level = gpiod_line_get_value(pinGPIO);
+		printf("DEBUG: GPIO pin state after read: %d\n", level);
 	}
 }
 
 
 void GPIOPin::worker() {
+
+	int value = gpiod_line_get_value(pinGPIO);
+	if (value == 0) {
+		printf("GPIO Pin low at startup — force read to clear ALERT\n");
+		gpiod_line_event fake_event;
+        fake_event.event_type = GPIOD_LINE_EVENT_FALLING_EDGE;
+
+        // Set dummy timestamp (optional)
+        fake_event.ts.tv_sec = 0;
+        fake_event.ts.tv_nsec = 0;
+
+        gpioEvent(fake_event);  
+	}
     while (running) {
 	const timespec ts = { ISR_TIMEOUT, 0 };
 
@@ -142,4 +178,8 @@ void GPIOPin::stop() {
 	 * @param chip The GPIO chip object.
 	 */
     gpiod_chip_close(chipGPIO);
+}
+
+gpiod_line* GPIOPin::getLine() {
+	return pinGPIO;
 }

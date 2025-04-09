@@ -1,7 +1,3 @@
-extern "C" {
-	#include <i2c/smbus.h>
-  }
-#include <cstdlib> // for system()
 #include <stdint.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -9,14 +5,13 @@ extern "C" {
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
-//#include <i2c/smbus.h>
 #include <poll.h>
 #include <error.h>
 #include <string.h>
 #include <cmath>
+#include <iostream>
 
 #include "gpioevent.h"
-#include "buzzer.h"
 #include <mutex>
 
 // Mutex to protect the use of single I2C bus shared by multiple sensors
@@ -37,39 +32,26 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		system("sudo ntpdate time.google.com > /dev/null 2>&1");
 		auto now = std::chrono::system_clock::now();
     	std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-		printf("\n %s \n", std::ctime(&currentTime));
-		printf(" Sensor %d : interrupt received!\n", sensor_id);
+		std::cout << std::ctime(&currentTime);
+		printf("Sensor %d : interrupt received!\n", sensor_id);
 
 	    switch (e.event_type) {
 	    case GPIOD_LINE_EVENT_RISING_EDGE:
 		{
-			/*
-			double temperature = readTemperature();
+		double temperature = readTemperature();
 
-			if (std::isnan(temperature)) {
-				printf("Sensor %d : Failed to read temperature.\n", sensor_id);
-			} else {
-				printf("Sensor %d : 🌡️ Temperature: %.2f °C\n", sensor_id, temperature);
-			}
-			*/
-			printf("Sensor %d : Rising!\n", sensor_id);
-			
-			break;
+		if (std::isnan(temperature)) {
+			printf("Sensor %d : Failed to read temperature.\n", sensor_id);
+		} else {
+			printf("Sensor %d : 🌡️ Temperature: %.2f °C\n", sensor_id, temperature);
+		}
+
+		printf("Sensor %d : Rising!\n", sensor_id);
+		break;
 		}
 	    case GPIOD_LINE_EVENT_FALLING_EDGE:
-		{
-			printf("Sensor %d : Falling\n", sensor_id);
-			double temperature = readTemperature();
-
-			if (std::isnan(temperature)) {
-				printf("Sensor %d : Failed to read temperature.\n", sensor_id);
-			} else {
-				printf("Sensor %d : 🌡️ Temperature: %.2f °C\n", sensor_id, temperature);
-				buzzer(); //trigger buzzer
-			}
-			
-			break;
-		}
+		printf("Sensor %d : Falling\n", sensor_id);
+		break;
 	    default:
 		printf("Unkown event\n");
 	    }
@@ -162,7 +144,7 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	/**
 	 * recommended to add a short delay after interrupt to ensure the TMP117 data is stable
 	 */
-	//usleep(5000); //2000 was giving Error: Failed to write to TMP117! Remote I/O error
+	usleep(2000); //2000 was giving Error: Failed to write to TMP117! Remote I/O error
 	
 	/**
 	*
@@ -191,18 +173,12 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	*     }
 	* 
 	*/
-
-   //****READ OPERATION IS NOT RESETTING THE ALERT PIN THEREFORE USING smbus.h */
-
- 
     unsigned char reg = TMP117_TEMP_REG;
     if (write(fd, &reg, 1) != 1) {
         printf("Error: Failed to write to TMP117! %s\n", strerror(errno));
         close(fd);
         return NAN;
     }
-
-	usleep(1000);
 	/**
 	*
 	* step#4. Reading value from the I2C Device:
@@ -235,7 +211,6 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
         close(fd);
         return NAN;
     }
-
 	/**
 	* 
 	* step#5. Closing the I2C Bus:
@@ -257,156 +232,14 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	 * TMP117 generates a signed 16-bit value as a raw output
 	 */
     int16_t rawTemp = (buffer[0] << 8) | buffer[1];
-
-		//DEBUG START
-		printf("Sensor %d ALERT should be cleared after this read.\n", sensor_id);
-	
-		//DEBUG END 
     return rawTemp * 0.0078125;  // Conversion formula from TMP117 datasheet
-
-/*
-	// Read temperature using smbus protocol
-	int raw = i2c_smbus_read_word_data(fd, TMP117_TEMP_REG);
-    close(fd);
-
-    if (raw < 0) {
-        fprintf(stderr, "Failed to read temperature via smbus.\n");
-        return NAN;
-    }
-
-    // TMP117 gives big-endian, smbus returns little-endian — swap
-    raw = ((raw & 0xFF) << 8) | ((raw >> 8) & 0xFF);
-
-    double tempC = raw * 0.0078125;
-
-    printf("Sensor %d ALERT should now be cleared.\n", sensor_id);
-    return tempC;
-*/
 	}
 	
-	
-	int i2c_smbus_read_word_data(int file, uint8_t command) {
-		union i2c_smbus_data data;
-		struct i2c_smbus_ioctl_data args;
-	
-		args.read_write = I2C_SMBUS_READ;
-		args.command = command;
-		args.size = I2C_SMBUS_WORD_DATA;
-		args.data = &data;
-	
-		if (ioctl(file, I2C_SMBUS, &args) < 0)
-			return -1;
-	
-		return 0x0FFFF & data.word;
-	}
-
 	public:
 
 	TMP117TemperatureSensor(int sensor_id){
 		this->sensor_id = sensor_id;
 	}
-
-	void readAndPrintStartupTemperature() {
-		double temp = readTemperature();
-		if (!std::isnan(temp)) {
-			printf("Sensor %d : 🌡️ Startup Temperature: %.2f °C\n", sensor_id, temp);
-		} else {
-			printf("Sensor %d : Failed to read temperature at startup.\n", sensor_id);
-		}
-	}
-	
-	//To set the TMP117 into CR mode is a feature of the TMP117 temperature sensor where the ALERT pin (INT) is used to signal when a new temperature conversion is ready.
-	  
-	void initialize() {
-		std::lock_guard<std::mutex> lock(i2c_mutex);
-	
-		int addr = (sensor_id == 1) ? 0x48 : 0x49;
-		char devicePath[] = "/dev/i2c-1";
-	
-		int fd = open(devicePath, O_RDWR);
-		if (fd < 0) {
-			perror("I2C open failed \n");
-			return;
-		}
-	
-		if (ioctl(fd, I2C_SLAVE, addr) < 0) {
-			perror("I2C address set failed \n");
-			close(fd);
-			return;
-		}
-	
-		usleep(200000); // Wait for TMP117 boot
-	
-		// Read device ID (0x0F) to verify sensor presence
-		unsigned char reg = 0x0F;
-		unsigned char id_buf[2];
-		if (write(fd, &reg, 1) != 1 || read(fd, id_buf, 2) != 2) {
-			perror("Device ID read failed \n");
-			close(fd);
-			return;
-		}
-	
-		uint16_t device_id = (id_buf[0] << 8) | id_buf[1];
-		printf("Sensor %d: Detected TMP117 (ID: 0x%04X)\n", sensor_id, device_id);
-	
-		// Dummy temperature read (0x00)
-		reg = 0x00;
-		unsigned char temp_buf[2];
-		if (write(fd, &reg, 1) == 1 && read(fd, temp_buf, 2) == 2) {
-			printf("Sensor %d: Dummy temp read: 0x%02X 0x%02X\n", sensor_id, temp_buf[0], temp_buf[1]);
-		} else {
-			perror("Dummy temperature read failed \n");
-		}
-	
-		usleep(5000);
-	
-		// Write T_HIGH and T_LOW manually
-		uint16_t high_raw = static_cast<uint16_t>(20.0 / 0.0078125);
-		uint16_t low_raw  = static_cast<uint16_t>(10.0 / 0.0078125);
-	
-		// Send thresholds
-		i2c_smbus_write_word_data(fd, 0x02, high_raw);
-		i2c_smbus_write_word_data(fd, 0x03, low_raw);
-		printf("Sensor %d: T_HIGH set to ~20.0°C\n", sensor_id);
-		printf("Sensor %d: T_LOW set to ~10.0°C\n", sensor_id);
-	
-		// Read temperature to clear ALERT pin
-		reg = 0x00;
-		write(fd, &reg, 1);
-		read(fd, temp_buf, 2);
-		usleep(10000);
-	
-		// Construct i2cset command string
-		char cmd[128];
-		//snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x6662 w", addr);
-		snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x8403 w", addr); //every 16 seconds
-		//snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x0400 w", addr); //swap the bytes of config register, Lower first and high second
-		printf("Sensor %d: Running: %s\n", sensor_id, cmd);
-	
-		int ret = system(cmd);
-		if (ret != 0) {
-			fprintf(stderr, "Sensor %d: i2cset command failed with return code %d\n", sensor_id, ret);
-			close(fd);
-			return;
-		}
-	
-		/*// Confirm CR mode set
-		reg = 0x01;
-		unsigned char cfg_buf[2];
-		if (write(fd, &reg, 1) == 1 && read(fd, cfg_buf, 2) == 2) {
-			uint16_t config = (cfg_buf[0] << 8) | cfg_buf[1];
-			printf("Sensor %d config reg now = 0x%04X\n", sensor_id, config);
-			if ((config & 0x0040) && (config & 0x0020))
-				printf("✅ Sensor %d: CR mode successfully set.\n", sensor_id);
-			else
-				printf("⚠️ Sensor %d: CR mode not set correctly.\n", sensor_id);
-		} else {
-			perror("Config readback failed");
-		}
-		*/
-		close(fd);
-	}
-
 	private:
 	int sensor_id;
 	
@@ -417,38 +250,23 @@ int main(int argc, char *argv[]) {
 	//TMP117TemperatureSensor t1, t2;
 	
 	TMP117TemperatureSensor *t1, *t2;
-	t1 = new TMP117TemperatureSensor(1);
+	//t1 = new TMP117TemperatureSensor(1);
 	t2 = new TMP117TemperatureSensor(2);
-
-	t1->initialize();
-	t2->initialize();
-
 	
-	GPIOPin gpiopin17, gpiopin27;
+	GPIOPin gpiopin27;//, gpiopin17;
 
-	gpiopin17.registerCallback(t1);
-	const int gpioPinNo17 = 17;
+	//gpiopin17.registerCallback(t1);
+	//const int gpioPinNo17 = 17;
 	
 	gpiopin27.registerCallback(t2);
 	const int gpioPinNo27 = 27;
 
 	gpiopin27.start(gpioPinNo27);
-	gpiopin17.start(gpioPinNo17);
+	//gpiopin17.start(gpioPinNo17);
 
-	// Force a startup temperature read for both sensors
-	t1->readAndPrintStartupTemperature();
-	t2->readAndPrintStartupTemperature();
 
-// Just for debugging, run for 10 seconds in main():
-/*for (int i = 0; i < 10; ++i) {
-    int val17 = gpiod_line_get_value(gpiopin17.getLine());
-    int val27 = gpiod_line_get_value(gpiopin27.getLine());
-    printf("DEBUG: GPIO17=%d, GPIO27=%d\n", val17, val27);
-    sleep(1);
-}*/
-	
 	getchar();
-    gpiopin17.stop();
+    //gpiopin17.stop();
 	gpiopin27.stop();
 	return 0;
 }
