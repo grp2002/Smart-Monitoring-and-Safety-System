@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/smart_system.dir/gpioevent.cpp.o CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o -o smart_system  -lgpiod -li2c 
+/usr/bin/c++ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o CMakeFiles/smart_system.dir/gpioevent.cpp.o CMakeFiles/smart_system.dir/buzzer.cpp.o -o smart_system  -lgpiod -li2c 

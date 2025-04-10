@@ -16,6 +16,7 @@
 #include <thread>
 #include <gpiod.h>
 #include <vector>
+#include <string>
 
 // enable debug messages and error messages to stderr
 #ifndef NDEBUG
@@ -55,9 +56,10 @@ public:
      * Starts listening on the GPIO pin.
      * \param chipNo GPIO Chip number. It's usually 0.
      * \param pinNo GPIO Pin number.
+     * \param processName Process controlling / monitoring this Pin.
      **/
     void start(int pinNo,
-	       int ChipNo = 0);
+	       int ChipNo = 0, std::string processName = "Consumer");
 
     /**
      * Stops listening to the pin.

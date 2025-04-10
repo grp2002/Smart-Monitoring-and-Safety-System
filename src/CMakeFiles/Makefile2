@@ -81,12 +81,12 @@ clean: CMakeFiles/smart_system.dir/clean
 CMakeFiles/smart_system.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=1,2,3 "Built target smart_system"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=1,2,3,4 "Built target smart_system"
 .PHONY : CMakeFiles/smart_system.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/smart_system.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/smart_system.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles 0
 .PHONY : CMakeFiles/smart_system.dir/rule

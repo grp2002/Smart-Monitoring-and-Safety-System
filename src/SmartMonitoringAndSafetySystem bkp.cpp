@@ -213,14 +213,17 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	* 
 	*/
 
-   unsigned char reg = TMP117_TEMP_REG;
+   //****READ OPERATION IS NOT RESETTING THE ALERT PIN THEREFORE USING smbus.h */
+
+ 
+    unsigned char reg = TMP117_TEMP_REG;
     if (write(fd, &reg, 1) != 1) {
-        printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to write to TMP117! %s\n", sensor_id, strerror(errno));
+        printf("Error: Failed to write to TMP117! %s\n", strerror(errno));
         close(fd);
         return NAN;
     }
 
-	usleep(1000); //recommended to add a delay between write() and read()
+	usleep(1000);
 	/**
 	*
 	* step#4. Reading value from the I2C Device:
@@ -249,13 +252,10 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	*/
     unsigned char buffer[2];
     if (read(fd, buffer, 2) != 2) {
-        printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to read temperature data!\n", sensor_id);
+        printf("Error: Failed to read temperature data!\n");
         close(fd);
         return NAN;
     }
-	//DEBUG START
-	//printf("[TMP117TemperatureSensor::readTemperature() {%d}] : DATA READY Alert should be cleared after this read.\n", sensor_id);
-	//DEBUG END
 
 	/**
 	* 
@@ -276,12 +276,51 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	/**
 	 * Convert raw data to temperature in degree celcius 
 	 * TMP117 generates a signed 16-bit value as a raw output
-	 * Refer TMP117 Data sheet for more information
 	 */
     int16_t rawTemp = (buffer[0] << 8) | buffer[1];
+
+		//DEBUG START
+		printf("[ TMP117TemperatureSensor %d ] ALERT should be cleared after this read.\n", sensor_id);
+	
+		//DEBUG END 
     return rawTemp * 0.0078125;  // Conversion formula from TMP117 datasheet
+
+/*
+	// Read temperature using smbus protocol
+	int raw = i2c_smbus_read_word_data(fd, TMP117_TEMP_REG);
+    close(fd);
+
+    if (raw < 0) {
+        fprintf(stderr, "Failed to read temperature via smbus.\n");
+        return NAN;
+    }
+
+    // TMP117 gives big-endian, smbus returns little-endian — swap
+    raw = ((raw & 0xFF) << 8) | ((raw >> 8) & 0xFF);
+
+    double tempC = raw * 0.0078125;
+
+    printf("[ TMP117TemperatureSensor %d ] ALERT should now be cleared.\n", sensor_id);
+    return tempC;
+*/
 	}
 	
+	
+	int i2c_smbus_read_word_data(int file, uint8_t command) {
+		union i2c_smbus_data data;
+		struct i2c_smbus_ioctl_data args;
+	
+		args.read_write = I2C_SMBUS_READ;
+		args.command = command;
+		args.size = I2C_SMBUS_WORD_DATA;
+		args.data = &data;
+	
+		if (ioctl(file, I2C_SMBUS, &args) < 0)
+			return -1;
+	
+		return 0x0FFFF & data.word;
+	}
+
 	public:
 
 	TMP117TemperatureSensor(int sensor_id, Buzzer* buzzer){
@@ -292,23 +331,14 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	void readAndPrintStartupTemperature() {
 		double temp = readTemperature();
 		if (!std::isnan(temp)) {
-			printf("[TMP117TemperatureSensor::readAndPrintStartupTemperature() {%d}] : 🌡️ Startup Temperature: %.2f °C\n", sensor_id, temp);
+			printf("[ TMP117TemperatureSensor %d ] : 🌡️ Startup Temperature: %.2f °C\n", sensor_id, temp);
 		} else {
-			printf("[TMP117TemperatureSensor::readAndPrintStartupTemperature() {%d}] : Failed to read temperature at startup.\n", sensor_id);
+			printf("[ TMP117TemperatureSensor %d ] : Failed to read temperature at startup.\n", sensor_id);
 		}
 	}
 	
-	/**
-	 * IMPORTANT: [From TMP117 data sheet]
-	 * Set the bits 11-10 of TMP117 16 bits config register [0x01] as 00 or 10 to keep the sensor in Continuous conversion (CC) mode
-	 * When the MOD[1:0] bits are set to 00 or 10 in the configuration register, the device operates in continuous conversion mode. 
-	 * The device continuously performs temperature conversions in this mode and updates the temperature result register at the end 
-	 * of every active conversion. The user can read the configuration register or the temperature result register to clear the 
-	 * Data_Ready flag. Therefore, the Data_Ready flag (INT) can be used to determine when the conversion completes so that an 
-	 * external controller can synchronize reading the result register with conversion result updates. The user can set the 
-	 * DR/nAlert_EN bit in the configuration register to monitor the state of the Data_Ready flag on the ALERT pin.
-	 */
-	 
+	//To set the TMP117 into CR mode is a feature of the TMP117 temperature sensor where the ALERT pin (INT) is used to signal when a new temperature conversion is ready.
+	  
 	void initialize() {
 		std::lock_guard<std::mutex> lock(i2c_mutex);
 	
@@ -317,12 +347,12 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	
 		int fd = open(devicePath, O_RDWR);
 		if (fd < 0) {
-			perror("[TMP117TemperatureSensor::initialize()] : I2C open failed \n");
+			perror("I2C open failed \n");
 			return;
 		}
 	
 		if (ioctl(fd, I2C_SLAVE, addr) < 0) {
-			perror("[TMP117TemperatureSensor::initialize()] : I2C address set failed \n");
+			perror("I2C address set failed \n");
 			close(fd);
 			return;
 		}
@@ -330,35 +360,54 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		usleep(200000); // Wait for TMP117 boot
 	
 		// Read device ID (0x0F) to verify sensor presence
-		unsigned char reg = 0x0F; //device ID register
+		unsigned char reg = 0x0F;
 		unsigned char id_buf[2];
 		if (write(fd, &reg, 1) != 1 || read(fd, id_buf, 2) != 2) {
-			perror("[TMP117TemperatureSensor::initialize()] : Device ID read failed \n");
+			perror("Device ID read failed \n");
 			close(fd);
 			return;
 		}
 	
 		uint16_t device_id = (id_buf[0] << 8) | id_buf[1];
-		printf("[TMP117TemperatureSensor::initialize() {%d}] : Detected TMP117 (ID: 0x%04X)\n", sensor_id, device_id);
+		printf("[ TMP117TemperatureSensor %d ]: Detected TMP117 (ID: 0x%04X)\n", sensor_id, device_id);
 	
-		/**
-		 * Construct i2cset command string to configure the TMP117 config register 0x01
-		 * For: 
-		 * Continuous conversion (CC) mode, and
-		 * 16 seconds conversion cycle time 
-		 * IMPORTANT:
-		 * Config value should be in little-endian representation. Take the lower byte first, then the higher byte second.
-		 * Examples:
-		 * 0x8403 : CC mode and 16 seconds conversion cycle
-		 * 0x0400 : CC mode and 1 second conversion cycle
-		 */ 
+		// Dummy temperature read (0x00)
+		reg = 0x00;
+		unsigned char temp_buf[2];
+		if (write(fd, &reg, 1) == 1 && read(fd, temp_buf, 2) == 2) {
+			printf("[ TMP117TemperatureSensor %d ]: Dummy temp read: 0x%02X 0x%02X\n", sensor_id, temp_buf[0], temp_buf[1]);
+		} else {
+			perror("Dummy temperature read failed \n");
+		}
+	
+		usleep(5000);
+	
+		// Write T_HIGH and T_LOW manually
+		uint16_t high_raw = static_cast<uint16_t>(20.0 / 0.0078125);
+		uint16_t low_raw  = static_cast<uint16_t>(10.0 / 0.0078125);
+	
+		// Send thresholds
+		i2c_smbus_write_word_data(fd, 0x02, high_raw);
+		i2c_smbus_write_word_data(fd, 0x03, low_raw);
+		printf("[ TMP117TemperatureSensor %d ]: T_HIGH set to ~20.0°C\n", sensor_id);
+		printf("[ TMP117TemperatureSensor %d ]: T_LOW set to ~10.0°C\n", sensor_id);
+	
+		// Read temperature to clear ALERT pin
+		reg = 0x00;
+		write(fd, &reg, 1);
+		read(fd, temp_buf, 2);
+		usleep(10000);
+	
+		// Construct i2cset command string
 		char cmd[128];
-		snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x8403 w", addr);
-		printf("[TMP117TemperatureSensor::initialize() {%d}] : Running : %s\n", sensor_id, cmd);
+		//snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x6662 w", addr);
+		snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x8403 w", addr); //every 16 seconds
+		//snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x0400 w", addr); //swap the bytes of config register, Lower first and high second
+		printf("[ TMP117TemperatureSensor %d ]: Running: %s\n", sensor_id, cmd);
 	
 		int ret = system(cmd);
 		if (ret != 0) {
-			fprintf(stderr, "[TMP117TemperatureSensor::initialize() {%d}] : i2cset command failed with return code %d\n", sensor_id, ret);
+			fprintf(stderr, "[ TMP117TemperatureSensor %d ]: i2cset command failed with return code %d\n", sensor_id, ret);
 			close(fd);
 			return;
 		}
@@ -366,11 +415,11 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		close(fd);
 	}
 
-	static constexpr double HIGH_THRESHOLD = 25.0; //High Temperature Threshold value
-    static constexpr double LOW_THRESHOLD  = 5.0;  //Low Temperature Threshold value
+	static constexpr double HIGH_THRESHOLD = 25.0;
+    static constexpr double LOW_THRESHOLD  = 5.0;
 
 	private:
-	int sensor_id;	//introduced to uniquely identify the TMP117 sensor instance
+	int sensor_id;
 	Buzzer* buzzer = nullptr;
 	
 };

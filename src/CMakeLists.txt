@@ -14,7 +14,11 @@ find_path(I2C_INCLUDE_DIR i2c/smbus.h)
 include_directories(${I2C_INCLUDE_DIR})
 
 
-add_executable(smart_system gpioevent.cpp buzzer.h SmartMonitoringAndSafetySystem.cpp)
+add_executable(smart_system 
+SmartMonitoringAndSafetySystem.cpp
+gpioevent.cpp
+buzzer.cpp
+)
 #add_executable(sensor_0x48 gpioevent.cpp TMP117Sensor0x48.cpp)
 #add_executable(sensor_0x49 gpioevent.cpp TMP117Sensor0x49.cpp)
 #add_executable(buzzer buzzer_control.cpp)

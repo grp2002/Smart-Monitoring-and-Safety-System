@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o"
   "CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o.d"
+  "CMakeFiles/smart_system.dir/buzzer.cpp.o"
+  "CMakeFiles/smart_system.dir/buzzer.cpp.o.d"
   "CMakeFiles/smart_system.dir/gpioevent.cpp.o"
   "CMakeFiles/smart_system.dir/gpioevent.cpp.o.d"
   "smart_system"

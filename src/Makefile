@@ -153,6 +153,30 @@ SmartMonitoringAndSafetySystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.s
 .PHONY : SmartMonitoringAndSafetySystem.cpp.s
 
+buzzer.o: buzzer.cpp.o
+.PHONY : buzzer.o
+
+# target to build an object file
+buzzer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/buzzer.cpp.o
+.PHONY : buzzer.cpp.o
+
+buzzer.i: buzzer.cpp.i
+.PHONY : buzzer.i
+
+# target to preprocess a source file
+buzzer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/buzzer.cpp.i
+.PHONY : buzzer.cpp.i
+
+buzzer.s: buzzer.cpp.s
+.PHONY : buzzer.s
+
+# target to generate assembly for a file
+buzzer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/buzzer.cpp.s
+.PHONY : buzzer.cpp.s
+
 gpioevent.o: gpioevent.cpp.o
 .PHONY : gpioevent.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... SmartMonitoringAndSafetySystem.o"
 	@echo "... SmartMonitoringAndSafetySystem.i"
 	@echo "... SmartMonitoringAndSafetySystem.s"
+	@echo "... buzzer.o"
+	@echo "... buzzer.i"
+	@echo "... buzzer.s"
 	@echo "... gpioevent.o"
 	@echo "... gpioevent.i"
 	@echo "... gpioevent.s"

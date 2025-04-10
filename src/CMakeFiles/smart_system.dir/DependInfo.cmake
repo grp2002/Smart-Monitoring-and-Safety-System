@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SmartMonitoringAndSafetySystem.cpp" "CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o" "gcc" "CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o.d"
+  "/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/buzzer.cpp" "CMakeFiles/smart_system.dir/buzzer.cpp.o" "gcc" "CMakeFiles/smart_system.dir/buzzer.cpp.o.d"
   "/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/gpioevent.cpp" "CMakeFiles/smart_system.dir/gpioevent.cpp.o" "gcc" "CMakeFiles/smart_system.dir/gpioevent.cpp.o.d"
   )
 

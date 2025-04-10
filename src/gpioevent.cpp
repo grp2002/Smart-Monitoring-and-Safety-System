@@ -4,10 +4,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
-
+#include <string>
 
 void GPIOPin::start(int pinNo,
-		    int chipNo) {
+		    int chipNo, std::string processName) {
 	
 #ifdef DEBUG
     fprintf(stderr,"GPIO pin %d on chip %d is being init.\n",pinNo,chipNo);
@@ -48,7 +48,7 @@ void GPIOPin::start(int pinNo,
 	 * @param consumer Name of the consumer.
 	 * @return 0 if the operation succeeds, -1 on failure.
 	 */
-    int ret = gpiod_line_request_both_edges_events(pinGPIO, "Consumer");
+    int ret = gpiod_line_request_both_edges_events(pinGPIO, processName.c_str());
 	//int ret = gpiod_line_request_falling_edge_events(pinGPIO, "Consumer");
     if (ret < 0) {
 #ifdef DEBUG
