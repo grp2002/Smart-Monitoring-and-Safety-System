@@ -1,13 +1,6 @@
 CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SmartMonitoringAndSafetySystem.cpp \
- /usr/include/stdc-predef.h /usr/include/i2c/smbus.h \
- /usr/include/linux/types.h /usr/lib/linux/uapi/arm64/asm/types.h \
- /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
- /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
- /usr/include/asm-generic/posix_types.h /usr/include/linux/i2c.h \
- /usr/include/c++/12/cstdlib \
+ /usr/include/stdc-predef.h /usr/include/c++/12/cstdlib \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -79,7 +72,14 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h \
  /usr/include/linux/falloc.h /usr/include/aarch64-linux-gnu/bits/stat.h \
  /usr/include/aarch64-linux-gnu/bits/struct_stat.h \
- /usr/include/linux/i2c-dev.h /usr/include/aarch64-linux-gnu/sys/ioctl.h \
+ /usr/include/linux/i2c-dev.h /usr/include/linux/types.h \
+ /usr/lib/linux/uapi/arm64/asm/types.h /usr/include/asm-generic/types.h \
+ /usr/include/asm-generic/int-ll64.h \
+ /usr/lib/linux/uapi/arm64/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h /usr/lib/linux/uapi/arm64/asm/posix_types.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/aarch64-linux-gnu/sys/ioctl.h \
  /usr/include/aarch64-linux-gnu/bits/ioctls.h \
  /usr/lib/linux/uapi/arm64/asm/ioctls.h /usr/include/asm-generic/ioctls.h \
  /usr/include/linux/ioctl.h /usr/lib/linux/uapi/arm64/asm/ioctl.h \
@@ -215,4 +215,6 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/c++/12/bits/ostream.tcc /usr/include/c++/12/istream \
  /usr/include/c++/12/bits/istream.tcc /usr/include/c++/12/mutex \
  /usr/include/c++/12/bits/std_mutex.h \
- /usr/include/c++/12/bits/unique_lock.h
+ /usr/include/c++/12/bits/unique_lock.h \
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SafePrint.h \
+ /usr/include/c++/12/cstdarg

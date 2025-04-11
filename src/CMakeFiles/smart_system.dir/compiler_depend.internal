@@ -4,18 +4,6 @@
 CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
  /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SmartMonitoringAndSafetySystem.cpp
  /usr/include/stdc-predef.h
- /usr/include/i2c/smbus.h
- /usr/include/linux/types.h
- /usr/lib/linux/uapi/arm64/asm/types.h
- /usr/include/asm-generic/types.h
- /usr/include/asm-generic/int-ll64.h
- /usr/lib/linux/uapi/arm64/asm/bitsperlong.h
- /usr/include/asm-generic/bitsperlong.h
- /usr/include/linux/posix_types.h
- /usr/include/linux/stddef.h
- /usr/lib/linux/uapi/arm64/asm/posix_types.h
- /usr/include/asm-generic/posix_types.h
- /usr/include/linux/i2c.h
  /usr/include/c++/12/cstdlib
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h
@@ -98,6 +86,16 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
  /usr/include/aarch64-linux-gnu/bits/stat.h
  /usr/include/aarch64-linux-gnu/bits/struct_stat.h
  /usr/include/linux/i2c-dev.h
+ /usr/include/linux/types.h
+ /usr/lib/linux/uapi/arm64/asm/types.h
+ /usr/include/asm-generic/types.h
+ /usr/include/asm-generic/int-ll64.h
+ /usr/lib/linux/uapi/arm64/asm/bitsperlong.h
+ /usr/include/asm-generic/bitsperlong.h
+ /usr/include/linux/posix_types.h
+ /usr/include/linux/stddef.h
+ /usr/lib/linux/uapi/arm64/asm/posix_types.h
+ /usr/include/asm-generic/posix_types.h
  /usr/include/aarch64-linux-gnu/sys/ioctl.h
  /usr/include/aarch64-linux-gnu/bits/ioctls.h
  /usr/lib/linux/uapi/arm64/asm/ioctls.h
@@ -224,15 +222,7 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
  /usr/include/c++/12/bits/stl_bvector.h
  /usr/include/c++/12/bits/range_access.h
  /usr/include/c++/12/bits/vector.tcc
- /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/buzzer.h
- /usr/include/c++/12/iostream
- /usr/include/c++/12/ostream
- /usr/include/c++/12/ios
- /usr/include/c++/12/exception
- /usr/include/c++/12/bits/exception_ptr.h
- /usr/include/c++/12/bits/cxxabi_init_exception.h
- /usr/include/c++/12/typeinfo
- /usr/include/c++/12/bits/nested_exception.h
+ /usr/include/c++/12/string
  /usr/include/c++/12/bits/char_traits.h
  /usr/include/c++/12/bits/localefwd.h
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++locale.h
@@ -241,12 +231,6 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
  /usr/include/aarch64-linux-gnu/bits/locale.h
  /usr/include/c++/12/cctype
  /usr/include/ctype.h
- /usr/include/c++/12/bits/ios_base.h
- /usr/include/c++/12/ext/atomicity.h
- /usr/include/aarch64-linux-gnu/c++/12/bits/atomic_word.h
- /usr/include/aarch64-linux-gnu/sys/single_threaded.h
- /usr/include/c++/12/bits/locale_classes.h
- /usr/include/c++/12/string
  /usr/include/c++/12/bits/ostream_insert.h
  /usr/include/c++/12/bits/cxxabi_forced.h
  /usr/include/c++/12/bits/basic_string.h
@@ -256,6 +240,20 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
  /usr/include/c++/12/cstdio
  /usr/include/c++/12/bits/charconv.h
  /usr/include/c++/12/bits/basic_string.tcc
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/buzzer.h
+ /usr/include/c++/12/iostream
+ /usr/include/c++/12/ostream
+ /usr/include/c++/12/ios
+ /usr/include/c++/12/exception
+ /usr/include/c++/12/bits/exception_ptr.h
+ /usr/include/c++/12/bits/cxxabi_init_exception.h
+ /usr/include/c++/12/typeinfo
+ /usr/include/c++/12/bits/nested_exception.h
+ /usr/include/c++/12/bits/ios_base.h
+ /usr/include/c++/12/ext/atomicity.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/atomic_word.h
+ /usr/include/aarch64-linux-gnu/sys/single_threaded.h
+ /usr/include/c++/12/bits/locale_classes.h
  /usr/include/c++/12/bits/locale_classes.tcc
  /usr/include/c++/12/system_error
  /usr/include/aarch64-linux-gnu/c++/12/bits/error_constants.h
@@ -278,6 +276,8 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
  /usr/include/c++/12/mutex
  /usr/include/c++/12/bits/std_mutex.h
  /usr/include/c++/12/bits/unique_lock.h
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SafePrint.h
+ /usr/include/c++/12/cstdarg
 
 CMakeFiles/smart_system.dir/buzzer.cpp.o
  /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/buzzer.cpp
@@ -477,6 +477,8 @@ CMakeFiles/smart_system.dir/buzzer.cpp.o
  /usr/include/c++/12/bits/parse_numbers.h
  /usr/include/c++/12/bits/std_mutex.h
  /usr/include/c++/12/bits/unique_lock.h
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SafePrint.h
+ /usr/include/c++/12/cstdarg
 
 CMakeFiles/smart_system.dir/gpioevent.cpp.o
  /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/gpioevent.cpp
@@ -641,6 +643,24 @@ CMakeFiles/smart_system.dir/gpioevent.cpp.o
  /usr/include/c++/12/bits/stl_bvector.h
  /usr/include/c++/12/bits/range_access.h
  /usr/include/c++/12/bits/vector.tcc
+ /usr/include/c++/12/string
+ /usr/include/c++/12/bits/char_traits.h
+ /usr/include/c++/12/bits/localefwd.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++locale.h
+ /usr/include/c++/12/clocale
+ /usr/include/locale.h
+ /usr/include/aarch64-linux-gnu/bits/locale.h
+ /usr/include/c++/12/cctype
+ /usr/include/ctype.h
+ /usr/include/c++/12/bits/ostream_insert.h
+ /usr/include/c++/12/bits/cxxabi_forced.h
+ /usr/include/c++/12/bits/basic_string.h
+ /usr/include/c++/12/string_view
+ /usr/include/c++/12/bits/string_view.tcc
+ /usr/include/c++/12/ext/string_conversions.h
+ /usr/include/c++/12/cstdio
+ /usr/include/c++/12/bits/charconv.h
+ /usr/include/c++/12/bits/basic_string.tcc
  /usr/include/fcntl.h
  /usr/include/aarch64-linux-gnu/bits/fcntl.h
  /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h
@@ -657,4 +677,20 @@ CMakeFiles/smart_system.dir/gpioevent.cpp.o
  /usr/include/asm-generic/ioctl.h
  /usr/include/aarch64-linux-gnu/bits/ioctl-types.h
  /usr/include/aarch64-linux-gnu/sys/ttydefaults.h
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SafePrint.h
+ /usr/include/c++/12/cstdarg
+ /usr/include/c++/12/mutex
+ /usr/include/c++/12/exception
+ /usr/include/c++/12/bits/exception_ptr.h
+ /usr/include/c++/12/bits/cxxabi_init_exception.h
+ /usr/include/c++/12/typeinfo
+ /usr/include/c++/12/bits/nested_exception.h
+ /usr/include/c++/12/system_error
+ /usr/include/aarch64-linux-gnu/c++/12/bits/error_constants.h
+ /usr/include/c++/12/stdexcept
+ /usr/include/c++/12/bits/std_mutex.h
+ /usr/include/c++/12/bits/unique_lock.h
+ /usr/include/c++/12/ext/atomicity.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/atomic_word.h
+ /usr/include/aarch64-linux-gnu/sys/single_threaded.h
 

@@ -5,12 +5,13 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <string>
+#include "SafePrint.h" //safe printf in multi-threaded environment
 
 void GPIOPin::start(int pinNo,
 		    int chipNo, std::string processName) {
 	
 #ifdef DEBUG
-    fprintf(stderr,"GPIO pin %d on chip %d is being init.\n",pinNo,chipNo);
+    SafePrint::printf("[ERROR] GPIO pin %d on chip %d is being init.\n\r",pinNo,chipNo);
 #endif
 
 	/**
@@ -23,9 +24,9 @@ void GPIOPin::start(int pinNo,
     chipGPIO = gpiod_chip_open_by_number(chipNo);
     if (NULL == chipGPIO) {
 #ifdef DEBUG
-	fprintf(stderr,"GPIO chip could not be accessed.\n");
+	SafePrint::printf("[ERROR] GPIO chip could not be accessed.\n\r");
 #endif
-	throw "GPIO chip error.\n";
+	throw "GPIO chip error.\n\r";
     }
 	
 	/**
@@ -37,9 +38,9 @@ void GPIOPin::start(int pinNo,
     pinGPIO = gpiod_chip_get_line(chipGPIO,pinNo);
     if (NULL == pinGPIO) {
 #ifdef DEBUG
-	fprintf(stderr,"GPIO line could not be accessed.\n");
+	SafePrint::printf("[ERROR] GPIO line could not be accessed.\n\r");
 #endif
-	throw "GPIO line error.\n";
+	throw "GPIO line error.\n\r";
     }
 
 	/**
@@ -52,29 +53,12 @@ void GPIOPin::start(int pinNo,
 	//int ret = gpiod_line_request_falling_edge_events(pinGPIO, "Consumer");
     if (ret < 0) {
 #ifdef DEBUG
-	fprintf(stderr,"Request event notification failed on pin %d and chip %d.\n",
+	SafePrint::printf("[ERROR] Request event notification failed on pin %d and chip %d.\n\r",
 		pinNo,chipNo);
 #endif
 	throw "Could not request event for IRQ.";
     }
 
-/*
-	// NEW: Immediately check pin level
-	int value = gpiod_line_get_value(pinGPIO);
-	if (value == 0) {
-		fprintf(stderr, "ALERT already active on startup — triggering manual event.\n");
-
-		struct timespec ts;
-		ts.tv_sec = 0;
-		ts.tv_nsec = 0;
-
-		gpiod_line_event fake_event;
-		fake_event.event_type = GPIOD_LINE_EVENT_FALLING_EDGE;
-		fake_event.ts = ts;
-
-		gpioEvent(fake_event);
-	}
-*/
     running = true;
 	/*
 	* Concurrently execute non-static member function GPIOPin::worker()
@@ -90,12 +74,12 @@ void GPIOPin::gpioEvent(gpiod_line_event& event) {
 	* Deduces the element type automatically
 	*/
 	for(auto &cb: callbackInterfaces) {
-		printf("GPIO event received...\n");
+		SafePrint::printf("[GPIOPin::gpioEvent()] : GPIO event received...\n\r");
 	    cb->hasEvent(event);
 		//DEBUG
 		usleep(1000);
 		int level = gpiod_line_get_value(pinGPIO);
-		printf("DEBUG: GPIO pin state after read: %d\n", level);
+		SafePrint::printf("[GPIOPin::gpioEvent()] : [DEBUG] : GPIO pin state after read: %d\n\r", level);
 	}
 }
 
@@ -104,7 +88,7 @@ void GPIOPin::worker() {
 
 	int value = gpiod_line_get_value(pinGPIO);
 	if (value == 0) {
-		printf("GPIO Pin low at startup — force read to clear ALERT\n");
+		SafePrint::printf("[GPIOPin::worker()] : GPIO Pin low at startup — force read to clear ALERT\n\r");
 		gpiod_line_event fake_event;
         fake_event.event_type = GPIOD_LINE_EVENT_FALLING_EDGE;
 
@@ -152,7 +136,8 @@ void GPIOPin::worker() {
 	    gpioEvent(event);
 	} else if (r < 0) {
 #ifdef DEBUG
-	    fprintf(stderr,"GPIO error while waiting for event.\n");
+	    SafePrint::printf("[ERROR] GPIO error while waiting for event.\n\r");
+
 #endif
 	}
     }

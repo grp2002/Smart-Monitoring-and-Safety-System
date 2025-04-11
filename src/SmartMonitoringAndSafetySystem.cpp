@@ -1,6 +1,3 @@
-extern "C" {
-	#include <i2c/smbus.h>
-  }
 #include <cstdlib> // for system()
 #include <stdint.h>
 #include <unistd.h>
@@ -9,14 +6,13 @@ extern "C" {
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
-//#include <i2c/smbus.h>
 #include <poll.h>
 #include <error.h>
 #include <string.h>
 #include <cmath>
-
 #include "gpioevent.h"
 #include "buzzer.h"
+#include "SafePrint.h" //safe printf in multi-threaded environment
 #include <mutex>
 
 
@@ -59,7 +55,9 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		system("sudo ntpdate time.google.com > /dev/null 2>&1");
 		auto now = std::chrono::system_clock::now();
     	std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
-		printf("\n[ %s ] :: [TMP117TemperatureSensor::hasEvent() {%d}] : interrupt received!\n", std::ctime(&currentTime), sensor_id);
+		std::string timeStr = std::ctime(&currentTime);
+		timeStr.pop_back(); // removes the '\n' from the end
+		SafePrint::printf("\n[ %s ] :: [TMP117TemperatureSensor::hasEvent() {%d}] : interrupt received!\n\r", timeStr.c_str(), sensor_id);
 		
 		/*Read the Temperature value when DATA READY INTERRUPT Pin is Low*/
 	    switch (e.event_type) {
@@ -68,7 +66,7 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 				* TMP117 sends the rising event after the 0x00 or 0x01 register has been read. 
 				*/
 
-				printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Rising!\n", sensor_id);
+				SafePrint::printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Rising!\n\r", sensor_id);
 				break;
 			}
 			case GPIOD_LINE_EVENT_FALLING_EDGE:
@@ -76,19 +74,19 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 				 * TMP117 sends the falling event after temperature conversion result is ready in the
 				 * 0x00 register.
 				 */
-				printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Falling\n", sensor_id);
+				SafePrint::printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Falling\n\r", sensor_id);
 				double temperature = readTemperature();
 
 				if (std::isnan(temperature)) { //Error handling: Invalid value
-					printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Failed to read temperature.\n", sensor_id);
+					SafePrint::printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Failed to read temperature.\n\r", sensor_id);
 				} else {
-					printf("[TMP117TemperatureSensor::hasEvent() {%d}] : 🌡️ Temperature: %.2f °C\n", sensor_id, temperature);
+					SafePrint::printf("[TMP117TemperatureSensor::hasEvent() {%d}] : 🌡️ Temperature: %.2f °C\n\r", sensor_id, temperature);
 					
 					/**
 					 * [ALERT!] Send the Buzzer beep alert when Temperature has crossed the threshold range
 					 */
 					if (temperature > HIGH_THRESHOLD || temperature < LOW_THRESHOLD) {
-						printf("⚠️ [ALERT!] [TMP117TemperatureSensor::hasEvent() {%d}] :Trigger the buzzer beep to alert! \n", sensor_id);
+						SafePrint::printf("⚠️ [ALERT!] [TMP117TemperatureSensor::hasEvent() {%d}] :Trigger the buzzer beep to alert! \n\r", sensor_id);
 						buzzer->on();
 						sleep(1);
 						buzzer->off();
@@ -98,14 +96,14 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 				break;
 			}
 			default:
-			printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Unkown event\n", sensor_id);
+			SafePrint::printf("[TMP117TemperatureSensor::hasEvent() {%d}] : Unkown event\n\r", sensor_id);
 		}
 	}
 	/**
 	 * Function to read temperature from TMP117 over I2C
 	 */
 	double readTemperature() {
-		printf("[TMP117TemperatureSensor::readTemperature() {%d}] : waiting for I2C lock.\n", sensor_id);
+		SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : waiting for I2C lock.\n\r", sensor_id);
 		std::lock_guard<std::mutex> lock(i2c_mutex); //acquire the lock to use I2C bus
 	/*
 	* Step#1: Opening the I2C Bus Device File:
@@ -138,7 +136,7 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	*/
     int fd = open(I2C_BUS, O_RDWR);
     if (fd < 0) {
-        printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to open I2C bus!\n", sensor_id);
+        SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to open I2C bus!\n\r", sensor_id);
         return NAN;
     }
 
@@ -167,14 +165,14 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	*/
 	if (sensor_id == 1){
 		if (ioctl(fd, I2C_SLAVE, TMP117_ADDR1) < 0) {
-			printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to set I2C address! %s\n", sensor_id, strerror(errno));
+			SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to set I2C address! %s\n\r", sensor_id, strerror(errno));
 			close(fd);
 			return NAN;
 		}
 	}
 	else if (sensor_id == 2){
 		if (ioctl(fd, I2C_SLAVE, TMP117_ADDR2) < 0) {
-			printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to set I2C address! %s\n", sensor_id, strerror(errno));
+			SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to set I2C address! %s\n\r", sensor_id, strerror(errno));
 			close(fd);
 			return NAN;
 		}
@@ -215,7 +213,7 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 
    unsigned char reg = TMP117_TEMP_REG;
     if (write(fd, &reg, 1) != 1) {
-        printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to write to TMP117! %s\n", sensor_id, strerror(errno));
+        SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to write to TMP117! %s\n\r", sensor_id, strerror(errno));
         close(fd);
         return NAN;
     }
@@ -249,12 +247,12 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	*/
     unsigned char buffer[2];
     if (read(fd, buffer, 2) != 2) {
-        printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to read temperature data!\n", sensor_id);
+        SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : Error : Failed to read temperature data!\n\r", sensor_id);
         close(fd);
         return NAN;
     }
 	//DEBUG START
-	//printf("[TMP117TemperatureSensor::readTemperature() {%d}] : DATA READY Alert should be cleared after this read.\n", sensor_id);
+	//SafePrint::printf("[TMP117TemperatureSensor::readTemperature() {%d}] : DATA READY Alert should be cleared after this read.\n\r", sensor_id);
 	//DEBUG END
 
 	/**
@@ -292,9 +290,9 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	void readAndPrintStartupTemperature() {
 		double temp = readTemperature();
 		if (!std::isnan(temp)) {
-			printf("[TMP117TemperatureSensor::readAndPrintStartupTemperature() {%d}] : 🌡️ Startup Temperature: %.2f °C\n", sensor_id, temp);
+			SafePrint::printf("[TMP117TemperatureSensor::readAndPrintStartupTemperature() {%d}] : 🌡️ Startup Temperature: %.2f °C\n\r", sensor_id, temp);
 		} else {
-			printf("[TMP117TemperatureSensor::readAndPrintStartupTemperature() {%d}] : Failed to read temperature at startup.\n", sensor_id);
+			SafePrint::printf("[TMP117TemperatureSensor::readAndPrintStartupTemperature() {%d}] : Failed to read temperature at startup.\n\r", sensor_id);
 		}
 	}
 	
@@ -317,12 +315,12 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	
 		int fd = open(devicePath, O_RDWR);
 		if (fd < 0) {
-			perror("[TMP117TemperatureSensor::initialize()] : I2C open failed \n");
+			SafePrint::printf("[TMP117TemperatureSensor::initialize()] : [ERROR] : I2C open failed \n\r");
 			return;
 		}
 	
 		if (ioctl(fd, I2C_SLAVE, addr) < 0) {
-			perror("[TMP117TemperatureSensor::initialize()] : I2C address set failed \n");
+			SafePrint::printf("[TMP117TemperatureSensor::initialize()] : [ERROR] : I2C address set failed \n\r");
 			close(fd);
 			return;
 		}
@@ -333,13 +331,13 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		unsigned char reg = 0x0F; //device ID register
 		unsigned char id_buf[2];
 		if (write(fd, &reg, 1) != 1 || read(fd, id_buf, 2) != 2) {
-			perror("[TMP117TemperatureSensor::initialize()] : Device ID read failed \n");
+			SafePrint::printf("[TMP117TemperatureSensor::initialize()] : [ERROR] : Device ID read failed \n\r");
 			close(fd);
 			return;
 		}
 	
 		uint16_t device_id = (id_buf[0] << 8) | id_buf[1];
-		printf("[TMP117TemperatureSensor::initialize() {%d}] : Detected TMP117 (ID: 0x%04X)\n", sensor_id, device_id);
+		SafePrint::printf("[TMP117TemperatureSensor::initialize() {%d}] : Detected TMP117 (ID: 0x%04X)\n\r", sensor_id, device_id);
 	
 		/**
 		 * Construct i2cset command string to configure the TMP117 config register 0x01
@@ -354,11 +352,11 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		 */ 
 		char cmd[128];
 		snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x8403 w", addr);
-		printf("[TMP117TemperatureSensor::initialize() {%d}] : Running : %s\n", sensor_id, cmd);
+		SafePrint::printf("[TMP117TemperatureSensor::initialize() {%d}] : Running : %s\n\r", sensor_id, cmd);
 	
 		int ret = system(cmd);
 		if (ret != 0) {
-			fprintf(stderr, "[TMP117TemperatureSensor::initialize() {%d}] : i2cset command failed with return code %d\n", sensor_id, ret);
+			SafePrint::printf("[TMP117TemperatureSensor::initialize() {%d}] : [ERROR] : i2cset command failed with return code %d\n\r", sensor_id, ret);
 			close(fd);
 			return;
 		}
@@ -376,29 +374,28 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 };
 
 int main(int argc, char *argv[]) {
-	fprintf(stderr,"Press any key to stop.\n");
+	SafePrint::printf("****Press any key to stop.****\n\r");
 
 	Buzzer shared_buzzer = Buzzer(0, 25);
 	
-	TMP117TemperatureSensor *t1, *t2;
 	GPIOPin gpiopin17, gpiopin27;
 	const int gpioPinNo17 = 17;
 	const int gpioPinNo27 = 27;
 
-	t1 = new TMP117TemperatureSensor(1, &shared_buzzer);
-	t2 = new TMP117TemperatureSensor(2, &shared_buzzer);
+	TMP117TemperatureSensor t1 = TMP117TemperatureSensor(1, &shared_buzzer);
+	TMP117TemperatureSensor t2 = TMP117TemperatureSensor(2, &shared_buzzer);
 
-	t1->initialize();
-	gpiopin17.registerCallback(t1);
+	t1.initialize();
+	gpiopin17.registerCallback(&t1);
 	gpiopin17.start(gpioPinNo17, 0, "TMP117 Temperature Sensor");
 
-	t2->initialize();
-	gpiopin27.registerCallback(t2);
+	t2.initialize();
+	gpiopin27.registerCallback(&t2);
 	gpiopin27.start(gpioPinNo27, 0, "TMP117 Temperature Sensor");
 	
 	// Force a startup temperature read for both sensors
-	t1->readAndPrintStartupTemperature();
-	t2->readAndPrintStartupTemperature();
+	t1.readAndPrintStartupTemperature();
+	t2.readAndPrintStartupTemperature();
 	
 	getchar(); //Blocking for the main program :: exit on key press
 

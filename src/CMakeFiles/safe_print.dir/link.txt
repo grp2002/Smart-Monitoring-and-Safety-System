@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/safe_print.dir/safePrint.cpp.o -o safe_print 

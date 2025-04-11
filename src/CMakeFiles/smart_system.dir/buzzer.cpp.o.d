@@ -159,4 +159,6 @@ CMakeFiles/smart_system.dir/buzzer.cpp.o: \
  /usr/include/c++/12/limits /usr/include/c++/12/ctime \
  /usr/include/c++/12/bits/parse_numbers.h \
  /usr/include/c++/12/bits/std_mutex.h \
- /usr/include/c++/12/bits/unique_lock.h
+ /usr/include/c++/12/bits/unique_lock.h \
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SafePrint.h \
+ /usr/include/c++/12/cstdarg
