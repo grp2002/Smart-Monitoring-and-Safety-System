@@ -1,13 +1,11 @@
 /**
  * Version Details: 
- * ABOUT: Smart Monitoring and Safety System software to monitor temperature sensor 
+ * About: Smart Monitoring and Safety System software to monitor temperature sensor 
  * via blocking IO in an interrupt driven model and calling the event handler callback
  * functions for event notification.
- * INPUT: two TMP117 temperature sensors
- * OUTPUT: 
- * (1) Console output on the terminal
- * (2) Trigger the buzzer beep 
- * (3) Display the real time temperature values using QT Thermo, Plot and Table widgets
+ * Input: two TMP117 temperature sensors
+ * Output 1: Console output on the terminal
+ * Output 2: Trigger the buzzer beep 
  */
 
 #include <cstdlib> // for system()
@@ -26,13 +24,11 @@
 #include "buzzer.h"
 #include "SafePrint.h" //safe printf in multi-threaded environment
 #include <mutex>
-//For QT:
-#include <QApplication>
-#include <csignal>
-#include "window.h"
+
 
 // Mutex to protect the shared I2C bus in a multi-threaded environment
 static std::mutex i2c_mutex; 
+
 
 class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 
@@ -105,10 +101,6 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 						sleep(1);
 						buzzer->off();
 					}
-					
-					onTemperatureRead(temperature); //QT
-					
-					
 				}
 				
 				break;
@@ -369,8 +361,7 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		 * 0x0400 : CC mode and 1 second conversion cycle
 		 */ 
 		char cmd[128];
-		//snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x8403 w", addr);
-		snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x0400 w", addr);
+		snprintf(cmd, sizeof(cmd), "i2cset -y 1 0x%02X 0x01 0x8403 w", addr);
 		SafePrint::printf("[TMP117TemperatureSensor::initialize() {%d}] : Running : %s\n\r", sensor_id, cmd);
 	
 		int ret = system(cmd);
@@ -383,9 +374,8 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 		close(fd);
 	}
 
-	std::function<void(double)> onTemperatureRead;
-	static constexpr double HIGH_THRESHOLD = 30.0; //High Temperature Threshold value
-    static constexpr double LOW_THRESHOLD  = 15.0;  //Low Temperature Threshold value
+	static constexpr double HIGH_THRESHOLD = 25.0; //High Temperature Threshold value
+    static constexpr double LOW_THRESHOLD  = 5.0;  //Low Temperature Threshold value
 
 	private:
 	int sensor_id;	//introduced to uniquely identify the TMP117 sensor instance
@@ -393,31 +383,8 @@ class TMP117TemperatureSensor : public GPIOPin::GPIOEventCallbackInterface {
 	
 };
 
-//For QT safe exit:
-void handleSignal(int signal) {
-    if (signal == SIGINT || signal == SIGTERM) {
-        qApp->quit();  // Safe Qt application exit
-    }
-}
-
 int main(int argc, char *argv[]) {
-//QT Start
-	QApplication app(argc, argv);
-    
-    Window sensor1Window, sensor2Window;
-	sensor1Window.setWindowTitle("TMP117 Sensor 1");
-	sensor2Window.setWindowTitle("TMP117 Sensor 2");
-
-	// Position windows
-	sensor1Window.move(100, 100);     // Top window
-	sensor2Window.move(100, 500);     // Below the first window
-
-	sensor1Window.show();
-	sensor2Window.show();
-//QT End
-	//SafePrint::printf("****Press any key to stop.****\n\r");
-	SafePrint::printf("****Close all the QT windows to stop.****\n\r");
-	SafePrint::printf("****If running from a remote SSH window using 'export DISPLAY=:0' then run 'reset' after stop.****\n\r");
+	SafePrint::printf("****Press any key to stop.****\n\r");
 
 	Buzzer shared_buzzer = Buzzer(0, 25);
 	
@@ -426,22 +393,7 @@ int main(int argc, char *argv[]) {
 	const int gpioPinNo27 = 27;
 
 	TMP117TemperatureSensor t1 = TMP117TemperatureSensor(1, &shared_buzzer);
-	/**
-	 * Callback implementation using a lambda (inline) function. 
-	 * It connects non-Qt backend logic (t1, the TMP117 sensor) to a Qt GUI method (updateTemperature).
-	 * @QMetaObject::invokeMethod() ensures that the GUI update runs in the Qt main thread, which is 
-	 * thread-safe and essential when callback runs from a separate thread (main()).
-	 */
-	t1.onTemperatureRead = [&](double t) {
-        QMetaObject::invokeMethod(&sensor1Window, "updateTemperature", Qt::QueuedConnection,
-                                  Q_ARG(double, t));
-    };
-
 	TMP117TemperatureSensor t2 = TMP117TemperatureSensor(2, &shared_buzzer);
-	t2.onTemperatureRead = [&](double t) {
-        QMetaObject::invokeMethod(&sensor2Window, "updateTemperature", Qt::QueuedConnection,
-                                  Q_ARG(double, t));
-    };
 
 	t1.initialize();
 	gpiopin17.registerCallback(&t1);
@@ -455,19 +407,10 @@ int main(int argc, char *argv[]) {
 	t1.readAndPrintStartupTemperature();
 	t2.readAndPrintStartupTemperature();
 	
-	/**
-	 * Qt applications must return app.exec() without blocking the main thread. 
-	 * getchar() is blocking the Qt event loop; it's not needed with QT else it will lead to 
-	 * Crashes or hangs. 
-	 */
-	//getchar(); //Blocking for the main program :: exit on key press
+	getchar(); //Blocking for the main program :: exit on key press
 
-    // shutdown with QT
-    QObject::connect(&app, &QCoreApplication::aboutToQuit, [&]() {
-        gpiopin17.stop();
-        gpiopin27.stop();
-    });
+    gpiopin17.stop();
+	gpiopin27.stop();
 
-	//return 0;
-	return app.exec();
+	return 0;
 }

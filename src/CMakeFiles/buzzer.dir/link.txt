@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/buzzer.dir/buzzer_control.cpp.o -o buzzer  -lgpiod 

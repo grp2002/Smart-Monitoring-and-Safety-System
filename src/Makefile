@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src//CMakeFiles/progress.marks
@@ -128,6 +173,19 @@ smart_system: cmake_check_build_system
 smart_system/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/build
 .PHONY : smart_system/fast
+
+#=============================================================================
+# Target rules for targets named smart_system_autogen
+
+# Build rule for target.
+smart_system_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 smart_system_autogen
+.PHONY : smart_system_autogen
+
+# fast build rule for target.
+smart_system_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system_autogen.dir/build.make CMakeFiles/smart_system_autogen.dir/build
+.PHONY : smart_system_autogen/fast
 
 SmartMonitoringAndSafetySystem.o: SmartMonitoringAndSafetySystem.cpp.o
 .PHONY : SmartMonitoringAndSafetySystem.o
@@ -201,6 +259,54 @@ gpioevent.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/gpioevent.cpp.s
 .PHONY : gpioevent.cpp.s
 
+smart_system_autogen/mocs_compilation.o: smart_system_autogen/mocs_compilation.cpp.o
+.PHONY : smart_system_autogen/mocs_compilation.o
+
+# target to build an object file
+smart_system_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/smart_system_autogen/mocs_compilation.cpp.o
+.PHONY : smart_system_autogen/mocs_compilation.cpp.o
+
+smart_system_autogen/mocs_compilation.i: smart_system_autogen/mocs_compilation.cpp.i
+.PHONY : smart_system_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+smart_system_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/smart_system_autogen/mocs_compilation.cpp.i
+.PHONY : smart_system_autogen/mocs_compilation.cpp.i
+
+smart_system_autogen/mocs_compilation.s: smart_system_autogen/mocs_compilation.cpp.s
+.PHONY : smart_system_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+smart_system_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/smart_system_autogen/mocs_compilation.cpp.s
+.PHONY : smart_system_autogen/mocs_compilation.cpp.s
+
+window.o: window.cpp.o
+.PHONY : window.o
+
+# target to build an object file
+window.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/window.cpp.o
+.PHONY : window.cpp.o
+
+window.i: window.cpp.i
+.PHONY : window.i
+
+# target to preprocess a source file
+window.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/window.cpp.i
+.PHONY : window.cpp.i
+
+window.s: window.cpp.s
+.PHONY : window.s
+
+# target to generate assembly for a file
+window.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/window.cpp.s
+.PHONY : window.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -208,7 +314,12 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... smart_system_autogen"
 	@echo "... smart_system"
 	@echo "... SmartMonitoringAndSafetySystem.o"
 	@echo "... SmartMonitoringAndSafetySystem.i"
@@ -219,6 +330,12 @@ help:
 	@echo "... gpioevent.o"
 	@echo "... gpioevent.i"
 	@echo "... gpioevent.s"
+	@echo "... smart_system_autogen/mocs_compilation.o"
+	@echo "... smart_system_autogen/mocs_compilation.i"
+	@echo "... smart_system_autogen/mocs_compilation.s"
+	@echo "... window.o"
+	@echo "... window.i"
+	@echo "... window.s"
 .PHONY : help
 
 
