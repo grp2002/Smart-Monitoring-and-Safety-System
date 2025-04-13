@@ -8,7 +8,7 @@ Window::Window()
     // set up the thermometer
     thermo = new QwtThermo; 
     thermo->setFillBrush( QBrush(Qt::red) );
-    thermo->setScale(0, 10);
+    thermo->setScale(-20, 50);
     thermo->show();
     
     
@@ -29,6 +29,13 @@ Window::Window()
     plot->replot();
     plot->show();
 
+    //Add table to display the temperature values
+    table = new QTableWidget;
+    table->setColumnCount(2);
+    table->setHorizontalHeaderLabels({"Time", "Temperature (°C)"});
+    table->setRowCount(1); // Only 1 row
+
+
     button = new QPushButton("Reset");
     // see https://doc.qt.io/qt-5/signalsandslots-syntaxes.html
     connect(button,&QPushButton::clicked,[this](){reset();});
@@ -36,12 +43,13 @@ Window::Window()
     // set up the layout - button above thermometer
     vLayout = new QVBoxLayout();
     vLayout->addWidget(button);
-    vLayout->addWidget(thermo);
+    vLayout->addWidget(thermo);     
 
     // plot to the left of button and thermometer
     hLayout = new QHBoxLayout();
     hLayout->addLayout(vLayout);
     hLayout->addWidget(plot);
+    hLayout->addWidget(table);
 
     setLayout(hLayout);
 
@@ -70,6 +78,21 @@ void Window::fakeSensorHasData(double inVal) {
     mtx.lock();
     std::move( yData, yData + plotDataSize - 1, yData+1 );
     yData[0] = inVal;
+
+    //Set table row values
+    /**
+    int row = table->rowCount();
+    table->insertRow(row);
+
+    table->setItem(row, 0, new QTableWidgetItem(QDateTime::currentDateTime().toString("hh:mm:ss")));
+    table->setItem(row, 1, new QTableWidgetItem(QString::number(inVal, 'f', 2)));
+
+        // Scroll to latest row
+        table->scrollToBottom();
+    */
+   table->setItem(0, 0, new QTableWidgetItem(QDateTime::currentDateTime().toString("hh:mm:ss")));
+   table->setItem(0, 1, new QTableWidgetItem(QString::number(inVal, 'f', 2)));
+
     mtx.unlock();
 }
 

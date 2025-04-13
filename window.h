@@ -7,6 +7,8 @@
 
 #include <QBoxLayout>
 #include <QPushButton>
+#include <QTableWidget>
+#include <QDateTime>
 
 #include <mutex>
 
@@ -32,6 +34,7 @@ private:
     QwtThermo    *thermo;
     QwtPlot      *plot;
     QwtPlotCurve *curve;
+    QTableWidget *table;
 
     
 
