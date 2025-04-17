@@ -55,5 +55,5 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 ## 🚀 Project Management  
 Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
 
-## Follow us on Instagram to become part of this journey
-https://www.instagram.com/smartmonitor_uog?igsh=MXhla2t0dzdzMWViOA%3D%3D&utm_source=qr
+## 📷✨ Follow us on [Instagram](https://www.instagram.com/smartmonitor_uog) for updates!
+
