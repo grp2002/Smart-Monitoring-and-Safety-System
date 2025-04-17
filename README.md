@@ -35,11 +35,11 @@ make
 
 Open a terminal and type
 ```
-./DDSHelloWorldPublisher
+./SensorMsgPublisher
 ```
 
 Open another terminal and type
 
 ```
-./DDSHelloWorldSubscriber
+./SensorMsgSubscriber
 ```
