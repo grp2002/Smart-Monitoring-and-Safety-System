@@ -206,23 +206,189 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/c++/12/bits/unique_lock.h \
  /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SafePrint.h \
  /usr/include/c++/12/cstdarg \
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/TMP117TemperatureSensor.h \
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SensorMsgPublisher.h \
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SensorMsgPubSubTypes.h \
+ /usr/include/fastdds/dds/topic/TopicDataType.hpp \
+ /usr/include/c++/12/functional /usr/include/c++/12/bits/std_function.h \
+ /usr/include/c++/12/memory /usr/include/c++/12/bits/stl_tempbuf.h \
+ /usr/include/c++/12/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/12/bits/align.h /usr/include/c++/12/bit \
+ /usr/include/c++/12/bits/shared_ptr.h \
+ /usr/include/c++/12/bits/shared_ptr_base.h \
+ /usr/include/c++/12/bits/allocated_ptr.h \
+ /usr/include/c++/12/ext/aligned_buffer.h \
+ /usr/include/c++/12/ext/concurrence.h \
+ /usr/include/c++/12/bits/shared_ptr_atomic.h \
+ /usr/include/c++/12/bits/atomic_base.h \
+ /usr/include/c++/12/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/12/backward/auto_ptr.h \
+ /usr/include/fastdds/dds/core/policy/QosPolicies.hpp \
+ /usr/include/fastdds/dds/core/policy/ParameterTypes.hpp \
+ /usr/include/fastdds/rtps/common/all_common.h \
+ /usr/include/fastdds/rtps/common/Types.h \
+ /usr/include/fastrtps/fastrtps_dll.h \
+ /usr/include/aarch64-linux-gnu/fastrtps/config.h \
+ /usr/include/fastrtps/eProsima_auto_link.h \
+ /usr/include/fastdds/rtps/common/VendorId_t.hpp \
+ /usr/include/c++/12/array /usr/include/c++/12/compare \
+ /usr/include/fastdds/rtps/common/CDRMessage_t.h \
+ /usr/include/fastdds/rtps/common/SerializedPayload.h \
+ /usr/include/c++/12/cstring /usr/include/c++/12/cassert \
+ /usr/include/fastdds/rtps/common/Guid.h \
+ /usr/include/fastdds/rtps/common/GuidPrefix_t.hpp \
+ /usr/include/c++/12/sstream /usr/include/c++/12/bits/sstream.tcc \
+ /usr/include/c++/12/iomanip /usr/include/c++/12/locale \
+ /usr/include/c++/12/bits/locale_facets_nonio.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+ /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/12/bits/codecvt.h \
+ /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/12/bits/locale_conv.h \
+ /usr/include/fastdds/rtps/common/EntityId_t.hpp \
+ /usr/include/fastdds/rtps/common/InstanceHandle.h \
+ /usr/include/fastdds/rtps/common/Locator.h \
+ /usr/include/fastrtps/utils/IPLocator.h \
+ /usr/include/fastdds/dds/log/Log.hpp /usr/include/c++/12/atomic \
+ /usr/include/c++/12/regex /usr/include/c++/12/bitset \
+ /usr/include/c++/12/stack /usr/include/c++/12/deque \
+ /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
+ /usr/include/c++/12/bits/stl_stack.h /usr/include/c++/12/bits/stl_algo.h \
+ /usr/include/c++/12/bits/algorithmfwd.h \
+ /usr/include/c++/12/bits/stl_heap.h \
+ /usr/include/c++/12/bits/uniform_int_dist.h \
+ /usr/include/c++/12/bits/stl_tree.h /usr/include/c++/12/bits/stl_map.h \
+ /usr/include/c++/12/bits/regex_constants.h \
+ /usr/include/c++/12/bits/regex_error.h \
+ /usr/include/c++/12/bits/regex_automaton.h \
+ /usr/include/c++/12/bits/regex_automaton.tcc \
+ /usr/include/c++/12/bits/regex_scanner.h \
+ /usr/include/c++/12/bits/regex_scanner.tcc \
+ /usr/include/c++/12/bits/regex_compiler.h \
+ /usr/include/c++/12/bits/regex_compiler.tcc \
+ /usr/include/c++/12/bits/regex.h /usr/include/c++/12/bits/regex.tcc \
+ /usr/include/c++/12/bits/regex_executor.h \
+ /usr/include/c++/12/bits/regex_executor.tcc /usr/include/c++/12/set \
+ /usr/include/c++/12/bits/stl_set.h \
+ /usr/include/c++/12/bits/stl_multiset.h \
+ /usr/include/c++/12/bits/erase_if.h /usr/include/c++/12/algorithm \
+ /usr/include/fastdds/rtps/common/LocatorsIterator.hpp \
+ /usr/include/fastdds/rtps/common/LocatorList.hpp \
+ /usr/include/fastdds/rtps/common/SequenceNumber.h \
+ /usr/include/fastrtps/utils/fixed_size_bitmap.hpp \
+ /usr/include/fastdds/rtps/common/FragmentNumber.h \
+ /usr/include/fastdds/rtps/common/Time_t.h \
+ /usr/include/fastdds/rtps/common/CacheChange.h \
+ /usr/include/fastdds/rtps/common/ChangeKind_t.hpp \
+ /usr/include/fastdds/rtps/common/WriteParams.h \
+ /usr/include/fastdds/rtps/common/SampleIdentity.h \
+ /usr/include/fastdds/rtps/history/IPayloadPool.h \
+ /usr/include/fastdds/rtps/common/MatchingInfo.h \
+ /usr/include/fastdds/rtps/common/Token.h \
+ /usr/include/fastdds/rtps/common/Property.h \
+ /usr/include/fastdds/rtps/common/BinaryProperty.h \
+ /usr/include/fastdds/rtps/messages/CDRMessage.h \
+ /usr/include/fastrtps/utils/fixed_size_string.hpp \
+ /usr/include/fastdds/rtps/security/common/ParticipantGenericMessage.h \
+ /usr/include/fastdds/rtps/messages/CDRMessage.hpp \
+ /usr/include/fastdds/rtps/security/accesscontrol/ParticipantSecurityAttributes.h \
+ /usr/include/fastdds/rtps/security/accesscontrol/SecurityMaskUtilities.h \
+ /usr/include/fastdds/rtps/security/accesscontrol/EndpointSecurityAttributes.h \
+ /usr/include/fastdds/rtps/attributes/ExternalLocators.hpp \
+ /usr/include/c++/12/map /usr/include/c++/12/bits/stl_multimap.h \
+ /usr/include/fastdds/rtps/common/LocatorWithMask.hpp \
+ /usr/include/fastdds/rtps/attributes/PropertyPolicy.h \
+ /usr/include/fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.hpp \
+ /usr/include/fastdds/rtps/builtin/data/ContentFilterProperty.hpp \
+ /usr/include/fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp \
+ /usr/include/c++/12/cstddef \
+ /usr/include/fastrtps/utils/collections/ResourceLimitedVector.hpp \
+ /usr/include/fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp \
+ /usr/include/fastdds/rtps/attributes/RTPSParticipantAttributes.h \
+ /usr/include/fastdds/rtps/attributes/ServerAttributes.h \
+ /usr/include/c++/12/iterator /usr/include/c++/12/bits/stream_iterator.h \
+ /usr/include/c++/12/list /usr/include/c++/12/bits/stl_list.h \
+ /usr/include/c++/12/bits/list.tcc \
+ /usr/include/fastdds/rtps/common/PortParameters.h \
+ /usr/include/fastdds/rtps/flowcontrol/FlowControllerDescriptor.hpp \
+ /usr/include/fastdds/rtps/flowcontrol/FlowControllerConsts.hpp \
+ /usr/include/fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.hpp \
+ /usr/include/fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.h \
+ /usr/include/fastdds/rtps/resources/ResourceManagement.h \
+ /usr/include/fastdds/rtps/transport/TransportInterface.h \
+ /usr/include/fastdds/rtps/common/LocatorSelector.hpp \
+ /usr/include/fastdds/rtps/common/LocatorSelectorEntry.hpp \
+ /usr/include/fastdds/rtps/transport/TransportDescriptorInterface.h \
+ /usr/include/fastdds/rtps/transport/TransportReceiverInterface.h \
+ /usr/include/fastdds/rtps/network/SenderResource.h \
+ /usr/include/c++/12/chrono \
+ /usr/include/fastdds/rtps/flowcontrol/FlowControllerConsts.hpp \
+ /usr/include/fastrtps/types/TypeObject.h \
+ /usr/include/fastrtps/types/TypesBase.h \
+ /usr/include/fastrtps/types/TypeObjectHashId.h \
+ /usr/include/fastrtps/types/TypeIdentifier.h \
+ /usr/include/fastrtps/types/TypeIdentifierTypes.h \
+ /usr/include/fastrtps/types/AnnotationParameterValue.h \
+ /usr/include/fastrtps/utils/string_convert.hpp \
+ /usr/include/fastrtps/utils/md5.h /usr/include/fastrtps/fastrtps_dll.h \
+ /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SensorMsg.h \
+ /usr/include/fastdds/dds/domain/DomainParticipant.hpp \
+ /usr/include/c++/12/utility /usr/include/c++/12/bits/stl_relops.h \
+ /usr/include/fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.hpp \
+ /usr/include/fastdds/dds/builtin/topic/BuiltinTopicKey.hpp \
+ /usr/include/fastdds/dds/builtin/topic/TopicBuiltinTopicData.hpp \
+ /usr/include/fastdds/dds/core/status/StatusMask.hpp \
+ /usr/include/fastdds/dds/core/Entity.hpp \
+ /usr/include/fastdds/dds/core/condition/StatusCondition.hpp \
+ /usr/include/fastdds/dds/core/condition/Condition.hpp \
+ /usr/include/fastdds/dds/topic/TypeSupport.hpp \
+ /usr/include/fastdds/dds/common/InstanceHandle.hpp \
+ /usr/include/fastrtps/types/DynamicPubSubType.h \
+ /usr/include/fastrtps/types/DynamicTypePtr.h \
+ /usr/include/fastrtps/types/DynamicDataPtr.h \
+ /usr/include/fastdds/dds/domain/qos/DomainParticipantQos.hpp \
+ /usr/include/fastdds/dds/topic/ContentFilteredTopic.hpp \
+ /usr/include/fastdds/dds/topic/TopicDescription.hpp \
+ /usr/include/fastdds/dds/topic/Topic.hpp \
+ /usr/include/fastdds/dds/core/status/BaseStatus.hpp \
+ /usr/include/fastdds/dds/topic/qos/TopicQos.hpp \
+ /usr/include/fastrtps/attributes/TopicAttributes.h \
+ /usr/include/fastrtps/qos/QosPolicies.h \
+ /usr/include/fastrtps/qos/ParameterTypes.h \
+ /usr/include/fastdds/dds/topic/IContentFilterFactory.hpp \
+ /usr/include/fastdds/dds/core/LoanableTypedCollection.hpp \
+ /usr/include/fastdds/dds/core/LoanableCollection.hpp \
+ /usr/include/fastdds/dds/topic/IContentFilter.hpp \
+ /usr/include/fastrtps/types/TypeDescriptor.h \
+ /usr/include/fastrtps/types/AnnotationDescriptor.h \
+ /usr/include/fastdds/dds/topic/TopicListener.hpp \
+ /usr/include/fastdds/dds/publisher/DataWriter.hpp \
+ /usr/include/fastdds/dds/builtin/topic/SubscriptionBuiltinTopicData.hpp \
+ /usr/include/fastdds/dds/core/status/IncompatibleQosStatus.hpp \
+ /usr/include/fastdds/dds/core/status/PublicationMatchedStatus.hpp \
+ /usr/include/fastdds/dds/core/status/MatchedStatus.hpp \
+ /usr/include/fastdds/dds/publisher/qos/DataWriterQos.hpp \
+ /usr/include/fastdds/dds/publisher/qos/WriterQos.hpp \
+ /usr/include/fastdds/dds/publisher/qos/PublisherQos.hpp \
+ /usr/include/fastrtps/attributes/PublisherAttributes.h \
+ /usr/include/fastdds/rtps/attributes/WriterAttributes.h \
+ /usr/include/fastdds/rtps/attributes/EndpointAttributes.h \
+ /usr/include/fastrtps/qos/WriterQos.h \
+ /usr/include/fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.hpp \
+ /usr/include/fastrtps/qos/DeadlineMissedStatus.h \
+ /usr/include/fastdds/dds/core/status/DeadlineMissedStatus.hpp \
+ /usr/include/fastdds/dds/publisher/DataWriterListener.hpp \
+ /usr/include/fastdds/dds/publisher/Publisher.hpp \
  /usr/include/aarch64-linux-gnu/qt5/QtWidgets/QApplication \
  /usr/include/aarch64-linux-gnu/qt5/QtWidgets/qapplication.h \
  /usr/include/aarch64-linux-gnu/qt5/QtWidgets/qtwidgetsglobal.h \
  /usr/include/aarch64-linux-gnu/qt5/QtGui/qtguiglobal.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qglobal.h \
- /usr/include/c++/12/cstddef /usr/include/c++/12/utility \
- /usr/include/c++/12/bits/stl_relops.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qconfig.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qtcore-config.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qsystemdetection.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qprocessordetection.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qcompilerdetection.h \
- /usr/include/c++/12/algorithm /usr/include/c++/12/bits/stl_algo.h \
- /usr/include/c++/12/bits/algorithmfwd.h \
- /usr/include/c++/12/bits/stl_heap.h \
- /usr/include/c++/12/bits/stl_tempbuf.h \
- /usr/include/c++/12/bits/uniform_int_dist.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qtypeinfo.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qsysinfo.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qlogging.h \
@@ -231,8 +397,6 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qbasicatomic.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qatomic_cxx11.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qgenericatomic.h \
- /usr/include/c++/12/atomic /usr/include/c++/12/bits/atomic_base.h \
- /usr/include/c++/12/bits/atomic_lockfree_defines.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qglobalstatic.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qnumeric.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qversiontagging.h \
@@ -245,7 +409,6 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qrefcount.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qnamespace.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qarraydata.h \
- /usr/include/c++/12/iterator /usr/include/c++/12/bits/stream_iterator.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qstringliteral.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qstringalgorithms.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qstringview.h \
@@ -258,13 +421,8 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qhashfunctions.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qpair.h \
  /usr/include/c++/12/numeric /usr/include/c++/12/bits/stl_numeric.h \
- /usr/include/c++/12/functional /usr/include/c++/12/bits/std_function.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qvector.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qcontainertools_impl.h \
- /usr/include/c++/12/list /usr/include/c++/12/bits/stl_list.h \
- /usr/include/c++/12/bits/allocated_ptr.h \
- /usr/include/c++/12/ext/aligned_buffer.h \
- /usr/include/c++/12/bits/list.tcc \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/limits.h \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/syslimits.h \
  /usr/include/limits.h /usr/include/aarch64-linux-gnu/bits/posix1_lim.h \
@@ -281,12 +439,7 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qmetatype.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qvarlengtharray.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qcontainerfwd.h \
- /usr/include/c++/12/map /usr/include/c++/12/bits/stl_tree.h \
- /usr/include/c++/12/bits/stl_map.h \
- /usr/include/c++/12/bits/stl_multimap.h \
- /usr/include/c++/12/bits/erase_if.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qobject_impl.h \
- /usr/include/c++/12/chrono \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qcoreevent.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qeventloop.h \
  /usr/include/aarch64-linux-gnu/qt5/QtGui/qwindowdefs.h \
@@ -356,14 +509,6 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o: \
  /usr/include/aarch64-linux-gnu/qt5/QtGui/qpixmap.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qsharedpointer.h \
  /usr/include/aarch64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
- /usr/include/c++/12/memory \
- /usr/include/c++/12/bits/stl_raw_storage_iter.h \
- /usr/include/c++/12/bits/align.h /usr/include/c++/12/bit \
- /usr/include/c++/12/bits/shared_ptr.h \
- /usr/include/c++/12/bits/shared_ptr_base.h \
- /usr/include/c++/12/ext/concurrence.h \
- /usr/include/c++/12/bits/shared_ptr_atomic.h \
- /usr/include/c++/12/backward/auto_ptr.h \
  /usr/include/aarch64-linux-gnu/qt5/QtGui/qfont.h \
  /usr/include/aarch64-linux-gnu/qt5/QtGui/qfontmetrics.h \
  /usr/include/aarch64-linux-gnu/qt5/QtGui/qfontinfo.h \

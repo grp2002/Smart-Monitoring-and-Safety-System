@@ -50,6 +50,22 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/lib/aarch64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake"
   "/usr/lib/aarch64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake"
   "/usr/lib/aarch64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastcdr/fastcdr-config-version.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastcdr/fastcdr-config.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastcdr/fastcdr-dynamic-targets-none.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastcdr/fastcdr-dynamic-targets.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastrtps/fastrtps-config-version.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastrtps/fastrtps-config.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastrtps/fastrtps-dynamic-targets-none.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastrtps/fastrtps-dynamic-targets.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/fastrtps/optionparser-targets.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/foonathan_memory/foonathan_memory-config-none.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/foonathan_memory/foonathan_memory-config-version.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/foonathan_memory/foonathan_memory-config.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/tinyxml2/tinyxml2-config-version.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/tinyxml2/tinyxml2-config.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/tinyxml2/tinyxml2-shared-targets-none.cmake"
+  "/usr/lib/aarch64-linux-gnu/cmake/tinyxml2/tinyxml2-shared-targets.cmake"
   "/usr/share/cmake-3.25/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.25/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake"
@@ -63,6 +79,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.25/Modules/Compiler/GNU-C.cmake"
   "/usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake"
   "/usr/share/cmake-3.25/Modules/Compiler/GNU.cmake"
+  "/usr/share/cmake-3.25/Modules/FindOpenSSL.cmake"
   "/usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake"
   "/usr/share/cmake-3.25/Modules/FindPackageMessage.cmake"
   "/usr/share/cmake-3.25/Modules/FindPkgConfig.cmake"
@@ -81,12 +98,19 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/SensorMsg_autogen.dir/AutogenInfo.json"
   "CMakeFiles/smart_system_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/SensorMsgSubscriber_autogen.dir/AutogenInfo.json"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/messages.dir/DependInfo.cmake"
+  "CMakeFiles/SensorMsg.dir/DependInfo.cmake"
   "CMakeFiles/smart_system.dir/DependInfo.cmake"
+  "CMakeFiles/SensorMsgSubscriber.dir/DependInfo.cmake"
+  "CMakeFiles/SensorMsg_autogen.dir/DependInfo.cmake"
   "CMakeFiles/smart_system_autogen.dir/DependInfo.cmake"
+  "CMakeFiles/SensorMsgSubscriber_autogen.dir/DependInfo.cmake"
   )

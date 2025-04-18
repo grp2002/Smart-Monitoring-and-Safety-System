@@ -162,6 +162,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named messages
+
+# Build rule for target.
+messages: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 messages
+.PHONY : messages
+
+# fast build rule for target.
+messages/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/messages.dir/build.make CMakeFiles/messages.dir/build
+.PHONY : messages/fast
+
+#=============================================================================
+# Target rules for targets named SensorMsg
+
+# Build rule for target.
+SensorMsg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SensorMsg
+.PHONY : SensorMsg
+
+# fast build rule for target.
+SensorMsg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/build
+.PHONY : SensorMsg/fast
+
+#=============================================================================
 # Target rules for targets named smart_system
 
 # Build rule for target.
@@ -175,6 +201,32 @@ smart_system/fast:
 .PHONY : smart_system/fast
 
 #=============================================================================
+# Target rules for targets named SensorMsgSubscriber
+
+# Build rule for target.
+SensorMsgSubscriber: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SensorMsgSubscriber
+.PHONY : SensorMsgSubscriber
+
+# fast build rule for target.
+SensorMsgSubscriber/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/build
+.PHONY : SensorMsgSubscriber/fast
+
+#=============================================================================
+# Target rules for targets named SensorMsg_autogen
+
+# Build rule for target.
+SensorMsg_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SensorMsg_autogen
+.PHONY : SensorMsg_autogen
+
+# fast build rule for target.
+SensorMsg_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg_autogen.dir/build.make CMakeFiles/SensorMsg_autogen.dir/build
+.PHONY : SensorMsg_autogen/fast
+
+#=============================================================================
 # Target rules for targets named smart_system_autogen
 
 # Build rule for target.
@@ -186,6 +238,163 @@ smart_system_autogen: cmake_check_build_system
 smart_system_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system_autogen.dir/build.make CMakeFiles/smart_system_autogen.dir/build
 .PHONY : smart_system_autogen/fast
+
+#=============================================================================
+# Target rules for targets named SensorMsgSubscriber_autogen
+
+# Build rule for target.
+SensorMsgSubscriber_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SensorMsgSubscriber_autogen
+.PHONY : SensorMsgSubscriber_autogen
+
+# fast build rule for target.
+SensorMsgSubscriber_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber_autogen.dir/build.make CMakeFiles/SensorMsgSubscriber_autogen.dir/build
+.PHONY : SensorMsgSubscriber_autogen/fast
+
+SensorMsg.o: SensorMsg.cxx.o
+.PHONY : SensorMsg.o
+
+# target to build an object file
+SensorMsg.cxx.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsg.cxx.o
+.PHONY : SensorMsg.cxx.o
+
+SensorMsg.i: SensorMsg.cxx.i
+.PHONY : SensorMsg.i
+
+# target to preprocess a source file
+SensorMsg.cxx.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsg.cxx.i
+.PHONY : SensorMsg.cxx.i
+
+SensorMsg.s: SensorMsg.cxx.s
+.PHONY : SensorMsg.s
+
+# target to generate assembly for a file
+SensorMsg.cxx.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsg.cxx.s
+.PHONY : SensorMsg.cxx.s
+
+SensorMsgPubSubTypes.o: SensorMsgPubSubTypes.cxx.o
+.PHONY : SensorMsgPubSubTypes.o
+
+# target to build an object file
+SensorMsgPubSubTypes.cxx.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsgPubSubTypes.cxx.o
+.PHONY : SensorMsgPubSubTypes.cxx.o
+
+SensorMsgPubSubTypes.i: SensorMsgPubSubTypes.cxx.i
+.PHONY : SensorMsgPubSubTypes.i
+
+# target to preprocess a source file
+SensorMsgPubSubTypes.cxx.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsgPubSubTypes.cxx.i
+.PHONY : SensorMsgPubSubTypes.cxx.i
+
+SensorMsgPubSubTypes.s: SensorMsgPubSubTypes.cxx.s
+.PHONY : SensorMsgPubSubTypes.s
+
+# target to generate assembly for a file
+SensorMsgPubSubTypes.cxx.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsgPubSubTypes.cxx.s
+.PHONY : SensorMsgPubSubTypes.cxx.s
+
+SensorMsgPublisher.o: SensorMsgPublisher.cpp.o
+.PHONY : SensorMsgPublisher.o
+
+# target to build an object file
+SensorMsgPublisher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o
+.PHONY : SensorMsgPublisher.cpp.o
+
+SensorMsgPublisher.i: SensorMsgPublisher.cpp.i
+.PHONY : SensorMsgPublisher.i
+
+# target to preprocess a source file
+SensorMsgPublisher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.i
+.PHONY : SensorMsgPublisher.cpp.i
+
+SensorMsgPublisher.s: SensorMsgPublisher.cpp.s
+.PHONY : SensorMsgPublisher.s
+
+# target to generate assembly for a file
+SensorMsgPublisher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.s
+.PHONY : SensorMsgPublisher.cpp.s
+
+SensorMsgSubscriber.o: SensorMsgSubscriber.cpp.o
+.PHONY : SensorMsgSubscriber.o
+
+# target to build an object file
+SensorMsgSubscriber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/SensorMsgSubscriber.cpp.o
+.PHONY : SensorMsgSubscriber.cpp.o
+
+SensorMsgSubscriber.i: SensorMsgSubscriber.cpp.i
+.PHONY : SensorMsgSubscriber.i
+
+# target to preprocess a source file
+SensorMsgSubscriber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/SensorMsgSubscriber.cpp.i
+.PHONY : SensorMsgSubscriber.cpp.i
+
+SensorMsgSubscriber.s: SensorMsgSubscriber.cpp.s
+.PHONY : SensorMsgSubscriber.s
+
+# target to generate assembly for a file
+SensorMsgSubscriber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/SensorMsgSubscriber.cpp.s
+.PHONY : SensorMsgSubscriber.cpp.s
+
+SensorMsgSubscriber_autogen/mocs_compilation.o: SensorMsgSubscriber_autogen/mocs_compilation.cpp.o
+.PHONY : SensorMsgSubscriber_autogen/mocs_compilation.o
+
+# target to build an object file
+SensorMsgSubscriber_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/SensorMsgSubscriber_autogen/mocs_compilation.cpp.o
+.PHONY : SensorMsgSubscriber_autogen/mocs_compilation.cpp.o
+
+SensorMsgSubscriber_autogen/mocs_compilation.i: SensorMsgSubscriber_autogen/mocs_compilation.cpp.i
+.PHONY : SensorMsgSubscriber_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SensorMsgSubscriber_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/SensorMsgSubscriber_autogen/mocs_compilation.cpp.i
+.PHONY : SensorMsgSubscriber_autogen/mocs_compilation.cpp.i
+
+SensorMsgSubscriber_autogen/mocs_compilation.s: SensorMsgSubscriber_autogen/mocs_compilation.cpp.s
+.PHONY : SensorMsgSubscriber_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SensorMsgSubscriber_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/SensorMsgSubscriber_autogen/mocs_compilation.cpp.s
+.PHONY : SensorMsgSubscriber_autogen/mocs_compilation.cpp.s
+
+SensorMsg_autogen/mocs_compilation.o: SensorMsg_autogen/mocs_compilation.cpp.o
+.PHONY : SensorMsg_autogen/mocs_compilation.o
+
+# target to build an object file
+SensorMsg_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsg_autogen/mocs_compilation.cpp.o
+.PHONY : SensorMsg_autogen/mocs_compilation.cpp.o
+
+SensorMsg_autogen/mocs_compilation.i: SensorMsg_autogen/mocs_compilation.cpp.i
+.PHONY : SensorMsg_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+SensorMsg_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsg_autogen/mocs_compilation.cpp.i
+.PHONY : SensorMsg_autogen/mocs_compilation.cpp.i
+
+SensorMsg_autogen/mocs_compilation.s: SensorMsg_autogen/mocs_compilation.cpp.s
+.PHONY : SensorMsg_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+SensorMsg_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsg.dir/build.make CMakeFiles/SensorMsg.dir/SensorMsg_autogen/mocs_compilation.cpp.s
+.PHONY : SensorMsg_autogen/mocs_compilation.cpp.s
 
 SmartMonitoringAndSafetySystem.o: SmartMonitoringAndSafetySystem.cpp.o
 .PHONY : SmartMonitoringAndSafetySystem.o
@@ -210,6 +419,30 @@ SmartMonitoringAndSafetySystem.s: SmartMonitoringAndSafetySystem.cpp.s
 SmartMonitoringAndSafetySystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.s
 .PHONY : SmartMonitoringAndSafetySystem.cpp.s
+
+TMP117TemperatureSensor.o: TMP117TemperatureSensor.cpp.o
+.PHONY : TMP117TemperatureSensor.o
+
+# target to build an object file
+TMP117TemperatureSensor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o
+.PHONY : TMP117TemperatureSensor.cpp.o
+
+TMP117TemperatureSensor.i: TMP117TemperatureSensor.cpp.i
+.PHONY : TMP117TemperatureSensor.i
+
+# target to preprocess a source file
+TMP117TemperatureSensor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.i
+.PHONY : TMP117TemperatureSensor.cpp.i
+
+TMP117TemperatureSensor.s: TMP117TemperatureSensor.cpp.s
+.PHONY : TMP117TemperatureSensor.s
+
+# target to generate assembly for a file
+TMP117TemperatureSensor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.s
+.PHONY : TMP117TemperatureSensor.cpp.s
 
 buzzer.o: buzzer.cpp.o
 .PHONY : buzzer.o
@@ -289,6 +522,7 @@ window.o: window.cpp.o
 # target to build an object file
 window.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/window.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/window.cpp.o
 .PHONY : window.cpp.o
 
 window.i: window.cpp.i
@@ -297,6 +531,7 @@ window.i: window.cpp.i
 # target to preprocess a source file
 window.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/window.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/window.cpp.i
 .PHONY : window.cpp.i
 
 window.s: window.cpp.s
@@ -305,6 +540,7 @@ window.s: window.cpp.s
 # target to generate assembly for a file
 window.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_system.dir/build.make CMakeFiles/smart_system.dir/window.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SensorMsgSubscriber.dir/build.make CMakeFiles/SensorMsgSubscriber.dir/window.cpp.s
 .PHONY : window.cpp.s
 
 # Help Target
@@ -319,11 +555,37 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... SensorMsgSubscriber_autogen"
+	@echo "... SensorMsg_autogen"
+	@echo "... messages"
 	@echo "... smart_system_autogen"
+	@echo "... SensorMsg"
+	@echo "... SensorMsgSubscriber"
 	@echo "... smart_system"
+	@echo "... SensorMsg.o"
+	@echo "... SensorMsg.i"
+	@echo "... SensorMsg.s"
+	@echo "... SensorMsgPubSubTypes.o"
+	@echo "... SensorMsgPubSubTypes.i"
+	@echo "... SensorMsgPubSubTypes.s"
+	@echo "... SensorMsgPublisher.o"
+	@echo "... SensorMsgPublisher.i"
+	@echo "... SensorMsgPublisher.s"
+	@echo "... SensorMsgSubscriber.o"
+	@echo "... SensorMsgSubscriber.i"
+	@echo "... SensorMsgSubscriber.s"
+	@echo "... SensorMsgSubscriber_autogen/mocs_compilation.o"
+	@echo "... SensorMsgSubscriber_autogen/mocs_compilation.i"
+	@echo "... SensorMsgSubscriber_autogen/mocs_compilation.s"
+	@echo "... SensorMsg_autogen/mocs_compilation.o"
+	@echo "... SensorMsg_autogen/mocs_compilation.i"
+	@echo "... SensorMsg_autogen/mocs_compilation.s"
 	@echo "... SmartMonitoringAndSafetySystem.o"
 	@echo "... SmartMonitoringAndSafetySystem.i"
 	@echo "... SmartMonitoringAndSafetySystem.s"
+	@echo "... TMP117TemperatureSensor.o"
+	@echo "... TMP117TemperatureSensor.i"
+	@echo "... TMP117TemperatureSensor.s"
 	@echo "... buzzer.o"
 	@echo "... buzzer.i"
 	@echo "... buzzer.s"

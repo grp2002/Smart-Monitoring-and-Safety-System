@@ -111,10 +111,24 @@ CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SmartMonitoringAndSafetySystem.cpp -o CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.s
 
+CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o: CMakeFiles/smart_system.dir/flags.make
+CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o: TMP117TemperatureSensor.cpp
+CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o: CMakeFiles/smart_system.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o -MF CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o.d -o CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o -c /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/TMP117TemperatureSensor.cpp
+
+CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/TMP117TemperatureSensor.cpp > CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.i
+
+CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/TMP117TemperatureSensor.cpp -o CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.s
+
 CMakeFiles/smart_system.dir/gpioevent.cpp.o: CMakeFiles/smart_system.dir/flags.make
 CMakeFiles/smart_system.dir/gpioevent.cpp.o: gpioevent.cpp
 CMakeFiles/smart_system.dir/gpioevent.cpp.o: CMakeFiles/smart_system.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/smart_system.dir/gpioevent.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/smart_system.dir/gpioevent.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_system.dir/gpioevent.cpp.o -MF CMakeFiles/smart_system.dir/gpioevent.cpp.o.d -o CMakeFiles/smart_system.dir/gpioevent.cpp.o -c /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/gpioevent.cpp
 
 CMakeFiles/smart_system.dir/gpioevent.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/smart_system.dir/gpioevent.cpp.s: cmake_force
 CMakeFiles/smart_system.dir/buzzer.cpp.o: CMakeFiles/smart_system.dir/flags.make
 CMakeFiles/smart_system.dir/buzzer.cpp.o: buzzer.cpp
 CMakeFiles/smart_system.dir/buzzer.cpp.o: CMakeFiles/smart_system.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/smart_system.dir/buzzer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/smart_system.dir/buzzer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_system.dir/buzzer.cpp.o -MF CMakeFiles/smart_system.dir/buzzer.cpp.o.d -o CMakeFiles/smart_system.dir/buzzer.cpp.o -c /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/buzzer.cpp
 
 CMakeFiles/smart_system.dir/buzzer.cpp.i: cmake_force
@@ -139,13 +153,29 @@ CMakeFiles/smart_system.dir/buzzer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_system.dir/buzzer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/buzzer.cpp -o CMakeFiles/smart_system.dir/buzzer.cpp.s
 
+CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o: CMakeFiles/smart_system.dir/flags.make
+CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o: SensorMsgPublisher.cpp
+CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o: CMakeFiles/smart_system.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o -MF CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o.d -o CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o -c /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SensorMsgPublisher.cpp
+
+CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SensorMsgPublisher.cpp > CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.i
+
+CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/SensorMsgPublisher.cpp -o CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.s
+
 # Object files for target smart_system
 smart_system_OBJECTS = \
 "CMakeFiles/smart_system.dir/smart_system_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/smart_system.dir/window.cpp.o" \
 "CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o" \
+"CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o" \
 "CMakeFiles/smart_system.dir/gpioevent.cpp.o" \
-"CMakeFiles/smart_system.dir/buzzer.cpp.o"
+"CMakeFiles/smart_system.dir/buzzer.cpp.o" \
+"CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o"
 
 # External object files for target smart_system
 smart_system_EXTERNAL_OBJECTS =
@@ -153,14 +183,23 @@ smart_system_EXTERNAL_OBJECTS =
 smart_system: CMakeFiles/smart_system.dir/smart_system_autogen/mocs_compilation.cpp.o
 smart_system: CMakeFiles/smart_system.dir/window.cpp.o
 smart_system: CMakeFiles/smart_system.dir/SmartMonitoringAndSafetySystem.cpp.o
+smart_system: CMakeFiles/smart_system.dir/TMP117TemperatureSensor.cpp.o
 smart_system: CMakeFiles/smart_system.dir/gpioevent.cpp.o
 smart_system: CMakeFiles/smart_system.dir/buzzer.cpp.o
+smart_system: CMakeFiles/smart_system.dir/SensorMsgPublisher.cpp.o
 smart_system: CMakeFiles/smart_system.dir/build.make
 smart_system: /usr/lib/aarch64-linux-gnu/libQt5Widgets.so.5.15.8
+smart_system: /usr/lib/aarch64-linux-gnu/libfastrtps.so.2.9.1
+smart_system: libSensorMsg.a
 smart_system: /usr/lib/aarch64-linux-gnu/libQt5Gui.so.5.15.8
 smart_system: /usr/lib/aarch64-linux-gnu/libQt5Core.so.5.15.8
+smart_system: /usr/lib/aarch64-linux-gnu/libfastcdr.so.1.0.26
+smart_system: /usr/lib/aarch64-linux-gnu/libfoonathan_memory.so.0.7.2
+smart_system: /usr/lib/aarch64-linux-gnu/libtinyxml2.so.9.0.0
+smart_system: /usr/lib/aarch64-linux-gnu/libssl.so
+smart_system: /usr/lib/aarch64-linux-gnu/libcrypto.so
 smart_system: CMakeFiles/smart_system.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable smart_system"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/raspberrypi/Projects/Smart-Monitoring-and-Safety-System/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable smart_system"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/smart_system.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
