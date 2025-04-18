@@ -177,18 +177,20 @@ void Window::updateTemperature(double temp) {
     std::move(yData, yData + plotDataSize - 1, yData + 1);
     yData[0] = temp;
 
-    // Update table
-    table->setItem(0, 0, new QTableWidgetItem(QDateTime::currentDateTime().toString("hh:mm:ss")));
-    table->setItem(0, 1, new QTableWidgetItem(QString::number(temp, 'f', 2)));
-
     // Determine the dynamic color based on temperature value
-    QColor plotColor;
+    QColor displayColor;
     if (temp > TMP117TemperatureSensor::HIGH_THRESHOLD)
-        plotColor = QColor("#FF0000");  // Red
+        displayColor = QColor("#FF0000");  // Red
     else if (temp < TMP117TemperatureSensor::LOW_THRESHOLD)
-        plotColor = QColor("#0000FF");  // Blue
+        displayColor = QColor("#0000FF");  // Blue
     else
-        plotColor = QColor("#00AA00");  // Green
+        displayColor = QColor("#00AA00");  // Green
+
+    // Update table
+    QTableWidgetItem* tempItem = new QTableWidgetItem(QString::number(temp, 'f', 2));
+    tempItem->setForeground(QBrush(displayColor)); 
+    table->setItem(0, 0, new QTableWidgetItem(QDateTime::currentDateTime().toString("hh:mm:ss")));
+    table->setItem(0, 1, tempItem);
 
     // Calculate new range from current data
     double min = yData[0];
@@ -205,14 +207,14 @@ void Window::updateTemperature(double temp) {
 
     //Update Thermo bar
     thermo->setScale(min, max);
-    thermo->setFillBrush(QBrush(plotColor));
+    thermo->setFillBrush(QBrush(displayColor));
     //thermo->setFillBrush(QColor("#1E90FF"));    
     thermo->setValue(temp);
     
     // Update Curve
     plot->setAxisScale(QwtPlot::yLeft, min, max);
     curve->setSamples(xData, yData, plotDataSize);
-    curve->setPen(QPen(plotColor, 2));
+    curve->setPen(QPen(displayColor, 1));
     plot->replot();
     update();
 }
