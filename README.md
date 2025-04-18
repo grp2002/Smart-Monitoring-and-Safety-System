@@ -51,7 +51,36 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 4. **Users can remotely monitor sensor readings and alerts via LAN-connected apps.**
 5. The system operates autonomously with **minimal latency** using a **multi-threaded architecture**.
 
+## ⚙️ Prerequisites
+Before building or running this project, make sure the following dependencies are installed on your system:
 
+
+### 🧩 GPIO
+```bash
+sudo apt-get update
+sudo apt-get install libgpiod-dev
+```
+---
+### 🧩 QT
+```bash
+sudo apt-get install qtdeclarative5-dev-tools qt5-qmake qt5-qmake-bin qtbase5-dev qtbase5-dev-tools
+sudo apt-get install libqwt-qt5-dev
+```
+---
+### 🧩 Fast DDS Components
+#### 🔹 Fast CDR
+```bash
+sudo apt install libfastcdr-dev
+```
+#### 🔹 Fast RTPS
+```bash
+apt install libfastrtps-dev
+```
+#### 🔹 Fast DDS tools
+```bash
+apt install fastddsgen fastdds-tools
+```
+---
 ## 🚀 Project Management  
 Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
 
