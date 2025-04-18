@@ -55,5 +55,17 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 ## 🚀 Project Management  
 Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
 
-## 📷✨ Follow us on [Instagram](https://www.instagram.com/smartmonitor_uog) for updates!
+## 📷✨ Follow us
+on [Instagram](https://www.instagram.com/smartmonitor_uog)
+
+## ⛵ Our Contributors 👏🎉 Great job team!
+
+| Name         			| GitHub Profile                     |
+|-------------------------------|------------------------------------|
+| Pragya Shilakari  | [@pshilakari](https://github.com/pshilakari) |
+| Gregory Paphiti   | [@grp2002](https://github.com/grp2002)   |
+| Abhishek Jain     | [@abjain182002](https://github.com/abjain182002) |
+| Ninad Shende      | [@Ninadshende2508](https://github.com/Ninadshende2508) |
+| Ugochukwu Elvis Som Anene  | [@Ugosoft13](https://github.com/Ugosoft13) |
+| Hankun Ma         | [@Hankun-P](https://github.com/Hankun-P) |
 
