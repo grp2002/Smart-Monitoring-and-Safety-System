@@ -1,0 +1,5 @@
+struct SensorMsg {
+        uint32 sensor_id;
+        double temperature;
+        string timestamp;
+    };
