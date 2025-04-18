@@ -1,4 +1,5 @@
 #include "window.h"
+#include "TMP117TemperatureSensor.h"
 
 Window::Window()
 {    
@@ -193,10 +194,22 @@ void Window::updateTemperature(double temp) {
     min -= margin;
     max += margin;
 
-    // Update UI
-    plot->setAxisScale(QwtPlot::yLeft, min, max);
+    //Update Thermo bar
     thermo->setScale(min, max);
+
+    if (temp < TMP117TemperatureSensor::LOW_THRESHOLD)
+    //thermo->setFillBrush(QBrush(Qt::blue));
+    thermo->setFillBrush(QColor("#1E90FF")); // Cool Blue
+    else if (temp > TMP117TemperatureSensor::HIGH_THRESHOLD)
+    //thermo->setFillBrush(QBrush(Qt::red));
+    thermo->setFillBrush(QColor("#FF4500")); // Hot Red-Orange
+    else
+    //thermo->setFillBrush(QBrush(Qt::green));
+    thermo->setFillBrush(QColor("#32CD32")); // Normal Green
     thermo->setValue(temp);
+    
+    // Update Curve
+    plot->setAxisScale(QwtPlot::yLeft, min, max);
     curve->setSamples(xData, yData, plotDataSize);
     plot->replot();
     update();
