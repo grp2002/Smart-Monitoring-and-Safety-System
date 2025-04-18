@@ -14,6 +14,8 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(GPIOD REQUIRED libgpiod)
 #pkg_check_modules(I2C REQUIRED i2c-dev)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(fastcdr REQUIRED)
+find_package(fastrtps REQUIRED)
 
 # Include directories
 include_directories(
@@ -24,12 +26,23 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+# Create a library for the message / topic
+add_custom_target(
+    messages
+    COMMAND fastddsgen SensorMsg.idl
+)
+
+add_library(SensorMsg STATIC SensorMsg.cxx SensorMsgPubSubTypes.cxx)
+add_dependencies(SensorMsg messages)
+
 # Source files
 set(SOURCES
     window.cpp
     SmartMonitoringAndSafetySystem.cpp
+    TMP117TemperatureSensor.cpp
     gpioevent.cpp
     buzzer.cpp
+    SensorMsgPublisher.cpp
 )
 
 # Add executable
@@ -42,7 +55,21 @@ target_link_libraries(smart_system
         i2c           # This links -li2c
         Qt5::Widgets
         qwt-qt5 #qwt
+        fastcdr 
+        fastrtps 
+        SensorMsg
 )
 
 # Install target
 install(TARGETS smart_system)
+
+# Subscriber
+add_executable(SensorMsgSubscriber SensorMsgSubscriber.cpp window.cpp)
+target_link_libraries(SensorMsgSubscriber 
+            Qt5::Widgets
+            qwt-qt5 #qwt
+            fastcdr 
+            fastrtps 
+            SensorMsg
+)
+
