@@ -39,7 +39,7 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 
 
 
-## 🚀 How It Works
+## How It Works
 1. **Sensors collect temperature data every 5 minutes** via GPIO.
 2. The **C++ daemon processes the data** and activates event handlers based on threshold conditions.
 3. Event handlers perform multiple tasks:
