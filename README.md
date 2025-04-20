@@ -4,22 +4,21 @@ University of Glasgow ENG5220: Real Time Embedded Programming (2024-25) Group Pr
 
 A real-time monitoring solution for **critical and non-critical environments** using **Raspberry Pi 5**.  
 This system ensures **safety, surveillance, and real-time alerts** by monitoring temperature levels and triggering alerts when predefined thresholds are exceeded.
-
-🚀 **Developed using:** C++, Raspberry Pi GPIO, LAN-based communication, and a Camera surveillance module.
-
----
-
-## 🌟 Features
-✅ **Real-time temperature monitoring** using Raspberry Pi sensors  
-✅ **Multi-threaded event handling** for real-time responsiveness  
-✅ **Threshold alerts with buzzer, screen display, and LAN updates**  
-✅ **Live camera surveillance for monitoring remote environments**  
-✅ **Physical ON/OFF switch for direct control over the sensors**  
-✅ **Scalable design for critical (e.g., substations) & non-critical (e.g., homes, farms) use cases**  
+ **Developed using:** C++, Raspberry Pi GPIO, LAN-based communication, and a Camera surveillance module.
 
 ---
 
-## 📌 System Architecture
+## Features
+ **Real-time temperature monitoring** using Raspberry Pi sensors  
+ **Multi-threaded event handling** for real-time responsiveness  
+ **Threshold alerts with buzzer, screen display, and LAN updates**  
+ **Live camera surveillance for monitoring remote environments**  
+ **Physical ON/OFF switch for direct control over the sensors**  
+ **Scalable design for critical (e.g., substations) & non-critical (e.g., homes, farms) use cases**  
+
+---
+
+## System Architecture
 
 ### **Hardware Components**
 - **Raspberry Pi 5** – Central processing unit
@@ -51,43 +50,43 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 4. **Users can remotely monitor sensor readings and alerts via LAN-connected apps.**
 5. The system operates autonomously with **minimal latency** using a **multi-threaded architecture**.
 
-## ⚙️ Prerequisites
+##  Prerequisites
 Before building or running this project, make sure the following dependencies are installed on your system:
 
 
-### 🧩 GPIO
+### GPIO
 ```bash
 sudo apt-get update
 sudo apt-get install libgpiod-dev
 ```
 ---
-### 🧩 QT
+### QT
 ```bash
 sudo apt-get install qtdeclarative5-dev-tools qt5-qmake qt5-qmake-bin qtbase5-dev qtbase5-dev-tools
 sudo apt-get install libqwt-qt5-dev
 ```
 ---
-### 🧩 Fast DDS Components
-#### 🔹 Fast CDR
+### Fast DDS Components
+#### Fast CDR
 ```bash
 sudo apt install libfastcdr-dev
 ```
-#### 🔹 Fast RTPS
+#### Fast RTPS
 ```bash
 apt install libfastrtps-dev
 ```
-#### 🔹 Fast DDS tools
+#### Fast DDS tools
 ```bash
 apt install fastddsgen fastdds-tools
 ```
 ---
-## 🚀 Project Management  
+## Project Management  
 Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
 
 ## 📷✨ Follow us
 on [Instagram](https://www.instagram.com/smartmonitor_uofg?igsh=MXhla2t0dzdzMWViOA%3D%3D&utm_source=qr)
 
-## ⛵ Our Contributors 👏🎉 Great job team!
+## Our Contributors Great job team!
 
 | Name         			| GitHub Profile                     |
 |-------------------------------|------------------------------------|
