@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(smart_system)
 
-#set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_CXX_STANDARD 11)
 
 # Enable Qt's automoc, autouic, autorcc
 set(CMAKE_AUTOMOC ON)
@@ -16,6 +16,19 @@ pkg_check_modules(GPIOD REQUIRED libgpiod)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
+find_package(OpenCV REQUIRED)
+
+pkg_check_modules(LIBCAMERA REQUIRED IMPORTED_TARGET libcamera)
+message(STATUS "libcamera library found:")
+message(STATUS "    version: ${LIBCAMERA_VERSION}")
+message(STATUS "    libraries: ${LIBCAMERA_LINK_LIBRARIES}")
+message(STATUS "    include path: ${LIBCAMERA_INCLUDE_DIRS}")
+
+message(STATUS "opencv:")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+#include_directories(${CMAKE_SOURCE_DIR} ${LIBCAMERA_INCLUDE_DIRS} ${OPENCV_INCLUDE_DIRS})
 
 # Include directories
 include_directories(
@@ -23,8 +36,11 @@ include_directories(
     i2c
     ${Qt5Widgets_INCLUDE_DIRS}
     ${QWT_INCLUDE_DIRS}
+    ${LIBCAMERA_INCLUDE_DIRS}
+    ${OPENCV_INCLUDE_DIRS}
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+include(GNUInstallDirs)
 
 # Create a library for the message / topic
 add_custom_target(
@@ -43,10 +59,12 @@ set(SOURCES
     gpioevent.cpp
     buzzer.cpp
     SensorMsgPublisher.cpp
+    libcam2opencv.cpp
 )
 
 # Add executable
 add_executable(smart_system ${SOURCES})
+add_executable(motion_sensor MotionSensor.cpp gpioevent.cpp)
 
 # Link libraries
 target_link_libraries(smart_system
@@ -58,10 +76,14 @@ target_link_libraries(smart_system
         fastcdr 
         fastrtps 
         SensorMsg
+        PkgConfig::LIBCAMERA
+        ${OpenCV_LIBS}
 )
+target_link_libraries(motion_sensor ${GPIOD_LIBRARIES})
 
 # Install target
 install(TARGETS smart_system)
+install(TARGETS motion_sensor)
 
 # Subscriber
 add_executable(SensorMsgSubscriber SensorMsgSubscriber.cpp window.cpp)
