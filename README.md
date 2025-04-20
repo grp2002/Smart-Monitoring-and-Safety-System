@@ -85,7 +85,7 @@ apt install fastddsgen fastdds-tools
 Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
 
 ## 📷✨ Follow us
-on [Instagram](https://www.instagram.com/smartmonitor_uofg?igsh=MXhla2t0dzdzMWViOA%3D%3D&utm_source=qr))
+on [Instagram](https://www.instagram.com/smartmonitor_uofg?igsh=MXhla2t0dzdzMWViOA%3D%3D&utm_source=qr)
 
 ## ⛵ Our Contributors 👏🎉 Great job team!
 
