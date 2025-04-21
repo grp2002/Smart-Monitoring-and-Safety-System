@@ -97,3 +97,15 @@ on [Instagram](https://www.instagram.com/smartmonitor_uofg?igsh=MXhla2t0dzdzMWVi
 | Ugochukwu Elvis Som Anene  | [@Ugosoft13](https://github.com/Ugosoft13) |
 | Hankun Ma         | [@Hankun-P](https://github.com/Hankun-P) |
 
+---
+## 📚 Third-Party Libraries
+
+This project uses the following third-party libraries:
+
+### 📸 [libcamera2opencv](https://github.com/berndporr/libcamera2opencv)
+
+- Author: [Bernd Porr](https://github.com/berndporr)
+- License: [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
+
+This library is used for interfacing libcamera with OpenCV for real-time frame processing.
+
