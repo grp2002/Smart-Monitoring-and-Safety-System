@@ -71,3 +71,16 @@ make
 Edit main.cpp if your motion sensor uses a different GPIO:
 
 default setup: MotionSensor motionSensor(0, 27); // GPIO chip 0, line 27 (BCM 27)
+
+## 📚 Third-Party Libraries
+
+This project uses the following third-party libraries:
+
+### 📸 [libcamera2opencv](https://github.com/berndporr/libcamera2opencv)
+
+- Author: [Bernd Porr](https://github.com/berndporr)
+- License: [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
+
+This library is used for interfacing libcamera with OpenCV for real-time frame processing.
+
+
