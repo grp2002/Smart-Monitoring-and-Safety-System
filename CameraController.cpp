@@ -3,7 +3,7 @@
 
 // Constructor: initializes state variables and frame callback
 CameraController::CameraController()
-    : motionDetected_(false), cameraRunning_(false), running_(false)
+    : cameraRunning_(false), running_(false)
 {
     frameCallback_ = FrameCallback();
 }
@@ -17,19 +17,7 @@ CameraController::~CameraController()
 // This function is called when the motion sensor detects movement
 void CameraController::onMotionDetected()
 {
-    motionDetected_ = true;
-
-    // Ensure only one thread can start/stop the camera at a time
-    std::lock_guard<std::mutex> lock(camMutex_);
-
-    // If the camera isn't running, start it and attach the frame callback
-    if (!cameraRunning_)
-    {
-        std::cout << "[Camera] Motion detected. Starting camera.\n";
-        camera_.registerCallback(&frameCallback_);
-        camera_.start();
-        cameraRunning_ = true;
-    }
+    timeoutSeconds_ = 10; // Top up the motion timer
 }
 
 // Called every time a new frame is available from the camera
@@ -74,24 +62,40 @@ void CameraController::monitorTimeout()
 {
     while (running_)
     {
-        std::this_thread::sleep_for(std::chrono::seconds(10));
-
-        // If no motion has been detected in the last 10 seconds
-        if (!motionDetected_)
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << "[Timer] Seconds left: " << timeoutSeconds_ << std::endl;
+        int t = timeoutSeconds_;
+        if (t > 0)
         {
-            std::lock_guard<std::mutex> lock(camMutex_);
+            timeoutSeconds_--; // Decrement the timer
 
-            // Stop the camera if it was running
-            if (cameraRunning_)
+            // Start camera if it's not running
+            if (!cameraRunning_)
             {
-                std::cout << "[Camera] No motion for 10s. Stopping camera.\n";
-                camera_.stop();
-                cameraRunning_ = false;
-                cv::destroyAllWindows();
+                std::lock_guard<std::mutex> lock(camMutex_);
+                if (!cameraRunning_)
+                {
+                    std::cout << "[Camera] Timer active. Starting camera.\n";
+                    camera_.registerCallback(&frameCallback_);
+                    camera_.start();
+                    cameraRunning_ = true;
+                }
             }
         }
-
-        // Reset the motion detection flag for the next 10s interval
-        motionDetected_ = false;
+        else // timeoutSeconds_ == 0
+        {
+            // Stop the camera if it's running
+            if (cameraRunning_)
+            {
+                std::lock_guard<std::mutex> lock(camMutex_);
+                if (cameraRunning_)
+                {
+                    std::cout << "[Camera] Timer expired. Stopping camera.\n";
+                    camera_.stop();
+                    cameraRunning_ = false;
+                    cv::destroyAllWindows();
+                }
+            }
+        }
     }
 }

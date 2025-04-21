@@ -35,20 +35,17 @@ private:
     // Internal class to handle camera frame display
     struct FrameCallback : public Libcam2OpenCV::Callback
     {
-        // Called by libcamera2opencv when a new frame is ready
         void hasFrame(const cv::Mat &frame, const libcamera::ControlList &) override;
     };
 
-    // Monitors inactivity and stops the camera if no motion for 10 seconds
-    void monitorTimeout();
-
-    Libcam2OpenCV camera_;             // Camera wrapper
-    FrameCallback frameCallback_;      // Object to handle camera frames
-    std::atomic<bool> motionDetected_; // Tracks recent motion detection
-    std::atomic<bool> cameraRunning_;  // Indicates if the camera is active
-    std::mutex camMutex_;              // Synchronizes access to camera start/stop
-    std::thread timeoutThread_;        // Thread that monitors motion timeout
-    std::atomic<bool> running_;        // Controls the monitor thread lifecycle
+    void monitorTimeout();               // Background thread to manage timeout
+    std::atomic<int> timeoutSeconds_{0}; // Shared countdown timer
+    Libcam2OpenCV camera_;               // Camera wrapper
+    FrameCallback frameCallback_;        // Frame handling callback
+    std::atomic<bool> cameraRunning_;    // Indicates if the camera is active
+    std::mutex camMutex_;                // Guards camera start/stop
+    std::thread timeoutThread_;          // Monitoring thread
+    std::atomic<bool> running_;          // Controls the monitor thread lifecycle
 };
 
 #endif // CAMERA_CONTROLLER_H
