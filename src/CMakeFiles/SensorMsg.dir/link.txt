@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSensorMsg.a CMakeFiles/SensorMsg.dir/SensorMsg_autogen/mocs_compilation.cpp.o CMakeFiles/SensorMsg.dir/SensorMsg.cxx.o CMakeFiles/SensorMsg.dir/SensorMsgPubSubTypes.cxx.o
+/usr/bin/ranlib libSensorMsg.a

@@ -76,8 +76,8 @@ target_link_libraries(smart_system
         fastcdr 
         fastrtps 
         SensorMsg
-        PkgConfig::LIBCAMERA
-        ${OpenCV_LIBS}
+   #     PkgConfig::LIBCAMERA
+   #     ${OpenCV_LIBS}
 )
 
 # Install target

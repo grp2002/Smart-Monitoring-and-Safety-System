@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/motion_sensor.dir/motion_sensor_autogen/mocs_compilation.cpp.o CMakeFiles/motion_sensor.dir/MotionSensor.cpp.o CMakeFiles/motion_sensor.dir/gpioevent.cpp.o -o motion_sensor  -lgpiod 
