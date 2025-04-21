@@ -3,17 +3,20 @@ University of Glasgow ENG5220: Real Time Embedded Programming (2024-25) Group Pr
 # Project Overview  
 
 A real-time monitoring solution for **critical and non-critical environments** using **Raspberry Pi 5**.  
-This system ensures **safety, surveillance, and real-time alerts** by monitoring temperature levels and triggering alerts when predefined thresholds are exceeded.
- **Developed using:** C++, Raspberry Pi GPIO, LAN-based communication, and a Camera surveillance module.
+This system ensures **safety, surveillance, and real-time alerts** by monitoring temperature levels, motion detection and triggering alerts via active buzzer beep. 
+ **Developed using:** C++, Raspberry Pi, GPIO, Fast DDS and QT.
 
 ---
 
 ## Features
- **Real-time temperature monitoring** using Raspberry Pi sensors  
- **Multi-threaded event handling** for real-time responsiveness  
- **Threshold alerts with buzzer, screen display, and LAN updates**  
- **Live camera surveillance for monitoring remote environments**  
-  **Scalable design for critical ( like  substations) & non-critical (e.g., homes, farms) use cases**  
+ - **Real-time temperature monitoring** using Texas Instruments TMP117 Temperature sensors
+ - **Real-time motion detection** using PIR motion sensor  
+ - **Multi-threaded event handling** for optimized utilisation of system resources in real-time system  
+ - **Threshold alerts with buzzer** for the consumer environment
+ - **Intuitive screen display** for easy monitoring and useful to visualize different aspects of the environment easily
+ - **Publish updates to subscribers** to support remote and multi-user environment 
+ - **Live camera surveillance for monitoring remote environments** to be implemented in next phase 
+ - **Scalable design for critical (like  Substations, NHS) & non-critical (e.g., homes, farms) use cases**  
 
 ---
 
@@ -22,26 +25,27 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 ### **Hardware Components**
 - **Raspberry Pi 5** – Central processing unit
 - **Temperature Sensors** – Reads environmental temperature
+- **PIR motion sensor** - Reads movements
 - **Buzzer** – Alerts when temperature exceeds threshold ans and when motion detect
 - **Camera Module** – Provides live surveillance
-- **LAN Interface** – Transmits real-time alerts to connected client applications
+- **LAN Interface** – Transmits real-time alerts to connected client applications using real-time FAST DDS Publisher Subscriber model
 
 ### **Software Components**
-- **C++ Daemon**: Periodically reads sensor data and handles event-driven actions
-- **Multithreading System**: Manages different events in real-time
-- **Web Interface (GitHub Pages)**: Displays project details and status updates
-- **Client Applications (LAN-Based)**: Receives alerts and displays monitoring data
+- **C++ Daemon**: Periodically reads sensors data and handles event-driven actions
+- **Multithreading System**: Manages parallel events in real-time
+- **QT GUI**: Displays temperature information in conventional thermo view, visualize the pattern in graph view, and easy to read Time and Temperature view
+- **Subscribers**: Receives temperature event notifications from main process to display the information for remote Consumers.
 
 ### **Design Scematic**
 ![Design Scematic](./docs/design/SystemSchematic.jpg)
 
 ## How It Works
-1. **Sensors collect temperature data every 5 minutes** via GPIO.
-2. The **C++ daemon processes the data** and activates event handlers based on threshold conditions.
+1. **Sensors collect temperature data every second** via GPIO.
+2. The **C++ daemon processes the data**, and activates event handlers.
 3. Event handlers perform multiple tasks:
-   - **Display alert messages on screen**
-   - **Trigger a buzzer alarm**
-   - **Send alerts to LAN-connected client applications**
+   - **Display temperature information on the screen**
+   - **Trigger a buzzer alarm when threshold exceeds**
+   - **Publish notifications to Subscribers**
    - **Start live video surveillance (if enabled)**
 4. **Users can remotely monitor sensor readings and alerts via LAN-connected apps.**
 5. The system operates autonomously with **minimal latency** using a **multi-threaded architecture**.
@@ -93,6 +97,15 @@ on [Instagram](https://www.instagram.com/smartmonitor_uofg?igsh=MXhla2t0dzdzMWVi
 | Ugochukwu Elvis Som Anene  | [@Ugosoft13](https://github.com/Ugosoft13) |
 | Hankun Ma         | [@Hankun-P](https://github.com/Hankun-P) |
 
+---
+## Repository Structure
+
+- **./src folder** for the source code of the software
+- **./docs/design folder** for design documents
+- **./docs/Test Cases folder** for test cases and test evidences
+- **./docs/images folder** for design drawings
+- **./docs folder** for all project related documents 
+- **home** for Readme and LICENSE
 ---
 ## 📚 Third-Party Libraries
 
