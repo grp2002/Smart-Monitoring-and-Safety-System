@@ -47,7 +47,7 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
    - **Trigger a buzzer alarm when threshold exceeds**
    - **Publish notifications to Subscribers**
    - **Start live video surveillance (if enabled)**
-4. **Users can remotely monitor sensor readings and alerts via LAN-connected apps.**
+4. **Users can remotely receive Temperature GUI display within the same network**
 5. The system operates autonomously with **minimal latency** using a **multi-threaded architecture**.
 
 ##  Prerequisites
