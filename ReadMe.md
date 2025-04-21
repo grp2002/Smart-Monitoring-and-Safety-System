@@ -2,8 +2,18 @@
 
 This project uses a **PIR motion sensor** and a **Pi Camera** to create an event-driven camera system. When motion is detected, the camera feed starts. If no motion is detected for 10 seconds, the feed stops automatically.
 
----
+## 📷 Motion-Activated Camera Behavior
 
+The camera system operates based on motion detection with a timeout mechanism:
+
+- **Motion Detection:** When the PIR sensor detects motion, it resets a countdown timer to 10 seconds.
+- **Camera Activation:** If the camera is not already running, it starts capturing and displaying frames.
+- **Continued Operation:** As long as motion is detected within each 10-second interval, the timer resets and the camera continues to operate.
+- **Camera Deactivation:** If no motion is detected for 10 consecutive seconds, the timer expires and the camera stops to conserve resources.
+
+This design ensures the camera remains active during motion and deactivates after a period of inactivity.
+
+---
 ## 📦 Requirements
 
 ### ✅ Hardware
@@ -51,9 +61,11 @@ make
 ```
 ## Architecture Overview
 ### Class Diagram
-![53321f39-251b-4579-88a5-eb03394d8bea](https://github.com/user-attachments/assets/3a8ce5c3-e3de-442b-b94b-391c024d3b2e) 
+![image](https://github.com/user-attachments/assets/32ffcc09-2ed3-4f64-9065-1c22a97cd77c)
+
 ## Sequence Diagram
-![cdec9582-8dbc-476f-98f7-e4ab10ea3d49](https://github.com/user-attachments/assets/08c1c3bc-fb68-49cd-b583-bf8261cce8c6)
+![image](https://github.com/user-attachments/assets/ce993f18-9fa9-4523-b96a-2c989dd15bc5)
+
 ---
 ### ⚙️ Configuration
 Edit main.cpp if your motion sensor uses a different GPIO:
