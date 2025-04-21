@@ -28,11 +28,11 @@ Install required packages on your Raspberry Pi:
 
 ```bash
 sudo apt update
-sudo apt install -y \
-    libopencv-dev \
-    libcamera-dev \
-    libgpiod-dev \
-    cmake \
+sudo apt install -y 
+    libopencv-dev 
+    libcamera-dev 
+    libgpiod-dev 
+    cmake 
     g++
 ```
 
@@ -41,18 +41,18 @@ This project depends on a lightweight wrapper to connect libcamera with OpenCV.
 
 Clone and install: \
 ```bash
-git clone https://github.com/berndporr/libcamera2opencv.git \
-cd libcamera2opencv \
-cmake .. \
-make \
-sudo make install\
+git clone https://github.com/berndporr/libcamera2opencv.git 
+cd libcamera2opencv 
+cmake .. 
+make 
+sudo make install
 cd ..
 ```
 ### Build:
 ```bash
-mkdir build \
-cd build \
-cmake .. \
+mkdir build 
+cd build 
+cmake .. 
 make 
 ```
 ### Run:
