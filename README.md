@@ -13,8 +13,7 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
  **Multi-threaded event handling** for real-time responsiveness  
  **Threshold alerts with buzzer, screen display, and LAN updates**  
  **Live camera surveillance for monitoring remote environments**  
- **Physical ON/OFF switch for direct control over the sensors**  
- **Scalable design for critical (e.g., substations) & non-critical (e.g., homes, farms) use cases**  
+  **Scalable design for critical ( like  substations) & non-critical (e.g., homes, farms) use cases**  
 
 ---
 
@@ -23,10 +22,9 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 ### **Hardware Components**
 - **Raspberry Pi 5** – Central processing unit
 - **Temperature Sensors** – Reads environmental temperature
-- **Buzzer** – Alerts when temperature exceeds threshold
+- **Buzzer** – Alerts when temperature exceeds threshold ans and when motion detect
 - **Camera Module** – Provides live surveillance
 - **LAN Interface** – Transmits real-time alerts to connected client applications
-- **Physical Power Switch** – Allows manual activation/deactivation of sensors
 
 ### **Software Components**
 - **C++ Daemon**: Periodically reads sensor data and handles event-driven actions
@@ -35,9 +33,7 @@ This system ensures **safety, surveillance, and real-time alerts** by monitoring
 - **Client Applications (LAN-Based)**: Receives alerts and displays monitoring data
 
 ### **Design Scematic**
-![Design Scematic](./docs/images/Smart%20Monitoring%20And%20Safety%20System%20schematic%20v1.0.png)
-
-
+![Design Scematic](./docs/design/SystemSchematic.jpg)
 
 ## How It Works
 1. **Sensors collect temperature data every 5 minutes** via GPIO.
