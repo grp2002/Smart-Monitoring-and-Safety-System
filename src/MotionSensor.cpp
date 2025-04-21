@@ -5,14 +5,22 @@
 #include <iostream>
 #include <unistd.h>
 
+MotionSensor::MotionSensor(Buzzer* buzzer){
+    this->buzzer = buzzer;
+}
 void MotionSensor::hasEvent(gpiod_line_event& event) {
     if (event.event_type == GPIOD_LINE_EVENT_RISING_EDGE) {
-        SafePrint::printf("🚶‍♂️ Motion Detected!\n\r");
+        SafePrint::printf("Motion Detected!\n\r");
+        buzzer->on();
+        sleep(2);
+        buzzer->off();
+
     } else if (event.event_type == GPIOD_LINE_EVENT_FALLING_EDGE) {
-        SafePrint::printf("📴 Motion Ended or no motion\n\r");
+        SafePrint::printf("Motion Ended or no motion\n\r");
     }
 }
 
+/*//For independent testing 
 int main() {
     try {
         // Create GPIOPin object for GPIO 23 (physical pin 16), on chip 0
@@ -38,3 +46,5 @@ int main() {
 
     return 0;
 }
+
+*/
