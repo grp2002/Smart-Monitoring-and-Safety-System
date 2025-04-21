@@ -2,10 +2,12 @@
 #define __GPIOEVENT_H
 
 /*
- * Special thanks to Bernd Porr <mail@berndporr.me.uk> for contributing
- * and sharing his work as free software in public domain. This software
- * is re-using parts of his work.
- * 
+ * Copyright (c) 2025 Bernd Porr <mail@berndporr.me.uk>
+ * Copyright (c) 2025 Pragya Shilakari, Gregory Paphiti, Abhishek Jain, Ninad Shende, Ugochukwu Elvis Som Anene, Hankun Ma
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation. See the file LICENSE.
  */
 
 #include <stdint.h>

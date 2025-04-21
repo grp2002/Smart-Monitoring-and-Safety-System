@@ -1,10 +1,19 @@
 /**
+ * @about: 
  * SafePrint.h provides a simple, thread-safe wrapper around printf() for multi-threaded C++ programs.
  * It ensures that log messages from multiple threads do not interleave or overwrite each other on the console.
  */
 
 #ifndef SAFE_PRINTF_H
 #define SAFE_PRINTF_H
+
+/*
+ * Copyright (c) 2025 Pragya Shilakari, Gregory Paphiti, Abhishek Jain, Ninad Shende, Ugochukwu Elvis Som Anene, Hankun Ma
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation. See the file LICENSE.
+ */
 
 #include <cstdio>
 #include <cstdarg>
