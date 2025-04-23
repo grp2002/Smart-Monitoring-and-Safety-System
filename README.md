@@ -57,7 +57,13 @@ Before building or running this project, make sure the following dependencies ar
 ### GPIO
 ```bash
 sudo apt-get update
+sudo apt install pkg-config
 sudo apt-get install libgpiod-dev
+```
+---
+### I2C
+```bash
+sudo apt install libi2c-dev i2c-tools build-essential
 ```
 ---
 ### QT
@@ -80,6 +86,16 @@ apt install libfastrtps-dev
 apt install fastddsgen fastdds-tools
 ```
 ---
+
+## How to compile  
+The build system is cmake:
+```bash
+cmake .
+make
+make install
+```
+---
+
 ## Project Management  
 Track our progress on the [GitHub Project Board](https://github.com/users/grp2002/projects/3).
 
